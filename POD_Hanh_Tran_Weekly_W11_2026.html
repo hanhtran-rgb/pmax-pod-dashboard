@@ -70,3 +70,992 @@ tr.total-row td { background: #1a1a2e; color: white; font-weight: 700; }
 .ret-badge { background: #d1fae5; color: #065f46; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
 .new-badge { background: #fed7aa; color: #9a3412; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
 .vip-badge { background: #ede9fe; color: #5b21b6; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
+
+.risk-item { padding: 14px 16px; border-left: 4px solid; margin-bottom: 10px; border-radius: 0 8px 8px 0; background: #fafafa; }
+.risk-high { border-color: #ef4444; background: #fff5f5; }
+.risk-medium { border-color: #f59e0b; background: #fffbeb; }
+.risk-low { border-color: #10b981; background: #f0fdf4; }
+.risk-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.risk-desc { font-size: 13px; color: #555; line-height: 1.5; }
+
+.issue-tag { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.issue-process { background: #fef3c7; color: #92400e; }
+.issue-workload { background: #fee2e2; color: #991b1b; }
+.issue-performance { background: #ede9fe; color: #5b21b6; }
+.issue-relationship { background: #dbeafe; color: #1e40af; }
+.issue-other { background: #f3f4f6; color: #4b5563; }
+
+.chart-container { position: relative; height: 280px; }
+.chart-container-sm { position: relative; height: 220px; }
+
+/* Client bar chart (CSS only) */
+.cb-wrapper { margin-top: 8px; }
+.cb-row { display: grid; grid-template-columns: 190px 1fr 70px 55px; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f5f5f5; }
+.cb-name { font-size: 12px; font-weight: 600; color: #1a1a2e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cb-track { height: 22px; background: #f0f2f5; border-radius: 4px; overflow: hidden; position: relative; display: flex; }
+.cb-seg-q1 { height: 100%; background: linear-gradient(90deg, #0f3460, #1d4ed8); border-radius: 4px; display: flex; align-items: center; padding-left: 6px; font-size: 10px; font-weight: 700; color: white; min-width: 24px; white-space: nowrap; }
+.cb-total { font-size: 12px; font-weight: 700; text-align: right; color: #1a1a2e; }
+.cb-share { font-size: 11px; color: #888; text-align: right; }
+.cb-header { display: grid; grid-template-columns: 190px 1fr 70px 55px; gap: 8px; padding: 4px 0 8px; border-bottom: 2px solid #e5e7eb; font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; }
+
+/* PPC Benchmark bar */
+.ppc-bar-wrap { margin: 16px 0; }
+.ppc-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.ppc-label { width: 90px; font-size: 12px; font-weight: 600; color: #555; text-align: right; }
+.ppc-track { flex: 1; height: 24px; background: #f0f2f5; border-radius: 6px; overflow: visible; position: relative; }
+.ppc-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 700; color: white; }
+.ppc-fill.request { background: linear-gradient(90deg, #e94560, #f87171); }
+.ppc-fill.budget { background: linear-gradient(90deg, #10b981, #34d399); }
+.ppc-benchmark { position: absolute; top: -2px; bottom: -2px; width: 2px; background: #ef4444; z-index: 2; }
+.ppc-benchmark-label { position: absolute; top: -18px; font-size: 10px; color: #ef4444; font-weight: 700; white-space: nowrap; transform: translateX(-50%); }
+.ppc-val { width: 45px; font-size: 12px; font-weight: 700; }
+.ppc-metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+.ppc-metric { background: #f8f9fb; border-radius: 8px; padding: 12px; text-align: center; }
+.ppc-metric .val { font-size: 22px; font-weight: 800; }
+.ppc-metric .lbl { font-size: 10px; color: #888; text-transform: uppercase; font-weight: 600; margin-top: 2px; }
+
+/* Pipeline board */
+.pipeline-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-radius: 8px; overflow: hidden; }
+.pipeline-col {}
+.pipeline-header { padding: 12px 10px; color: white; text-align: center; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+.pipeline-count { font-size: 26px; font-weight: 800; display: block; margin-top: 2px; }
+.pipeline-items { background: #fafafa; padding: 8px; min-height: 120px; border-right: 1px solid #e5e7eb; }
+.pipeline-item { background: white; border-radius: 6px; padding: 7px 9px; margin-bottom: 5px; font-size: 11px; line-height: 1.4; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.pi-name { font-weight: 600; color: #1a1a2e; }
+.pi-pic { font-size: 10px; color: #888; margin-top: 2px; }
+
+/* Heatmap */
+.hm-table { width: 100%; border-collapse: separate; border-spacing: 3px; font-size: 12px; }
+.hm-table th { background: transparent; color: #777; font-weight: 600; font-size: 11px; padding: 4px 6px; text-align: center; }
+.hm-table th:first-child, .hm-table th:nth-child(2) { text-align: left; }
+.hm-cell { border-radius: 7px; padding: 5px 6px; font-weight: 700; font-size: 11px; min-width: 40px; color: white; text-align: center; display: inline-block; width: 100%; }
+.hm-name { font-weight: 700; font-size: 12px; color: #222; padding: 5px 8px; }
+.hm-grade { display: inline-block; padding: 2px 7px; border-radius: 8px; font-size: 10px; font-weight: 700; }
+.ho { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+.hh { background: linear-gradient(135deg, #ffa726, #fb8c00); }
+.ha { background: linear-gradient(135deg, #ffca28, #f9a825); color: #333; }
+.hl { background: linear-gradient(135deg, #66bb6a, #43a047); }
+.hi { background: #e0e0e0; color: #999; }
+.hz { background: #f5f5f5; color: #ccc; }
+.legend-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #666; }
+.legend-dot { width: 14px; height: 10px; border-radius: 3px; }
+
+/* Action plan */
+.ap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ap-item { background: white; border-radius: 10px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); border-left: 4px solid; }
+.ap-item .ap-icon { font-size: 22px; margin-bottom: 6px; }
+.ap-item .ap-title { font-weight: 700; font-size: 14px; color: #1a1a2e; margin-bottom: 4px; }
+.ap-item .ap-desc { font-size: 12px; color: #666; line-height: 1.5; }
+
+/* P&L cards */
+.pnl-month-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pnl-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.pnl-card h4 { font-size: 13px; font-weight: 700; color: #0f3460; margin-bottom: 14px; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; }
+.pnl-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #f8f8f8; font-size: 12px; }
+.pnl-row .pnl-label { color: #666; }
+.pnl-row .pnl-val { font-weight: 700; color: #1a1a2e; }
+.pnl-row .pnl-val.pos { color: #10b981; }
+.pnl-row .pnl-val.neg { color: #ef4444; }
+.pnl-row .pnl-val.warn { color: #f59e0b; }
+.tbd-chip { display: inline-block; background: #f3f4f6; color: #9ca3af; font-size: 10px; padding: 1px 7px; border-radius: 8px; font-style: italic; }
+
+/* Exec summary banner */
+.exec-banner { background: linear-gradient(135deg, #f0fdf4, #ecfdf5); border: 1px solid #bbf7d0; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+.exec-banner h3 { color: #065f46; font-size: 14px; margin-bottom: 8px; }
+.exec-banner p { font-size: 13px; line-height: 1.7; color: #374151; }
+
+/* Footnote */
+.footnote { background: #fff8f0; border: 1px solid #fed7aa; border-radius: 10px; padding: 16px 20px; margin-top: 20px; font-size: 12px; color: #78350f; line-height: 1.7; }
+.footnote h4 { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+
+/* Filter mode */
+.filter-mode { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.fm-btn { padding: 7px 16px; border: none; background: #eef1f5; cursor: pointer; border-radius: 8px; font-size: 12px; font-weight: 700; color: #555; transition: 0.2s; }
+.fm-btn.active { background: #0f3460; color: white; }
+.fm-panel { display: none; }
+.fm-panel.active { display: block; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <h1>POD Hạnh Trần — Weekly Performance Dashboard</h1>
+    <div class="subtitle">PMAX · Enterprise · Weekly Report · Đơn vị: Triệu VND</div>
+    <div class="date-badge">📅 Week 11 — 13/03 – 19/03/2026</div>
+  </div>
+  <div class="header-right">
+    <div>POD Director: <strong style="color:white">Hạnh Trần</strong></div>
+    <div style="margin-top:4px">Last updated: 19/03/2026</div>
+    <div style="margin-top:4px">Kỳ tiếp: 26/03/2026</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="switchTab('exec', this)">📊 Executive Summary</button>
+  <button class="tab-btn" onclick="switchTab('team', this)">👥 Team & Projects</button>
+  <button class="tab-btn" onclick="switchTab('pnl', this)">💰 P&L Finance</button>
+  <button class="tab-btn" onclick="switchTab('resource', this)">🔥 Resource Heatmap</button>
+  <button class="tab-btn" onclick="switchTab('filters', this)">🔍 Deep-Dive</button>
+  <button class="tab-btn" onclick="switchTab('risk', this)">⚠️ Risk & Actions</button>
+</div>
+
+<div class="container">
+
+<!-- ==================== TAB 1: EXECUTIVE SUMMARY ==================== -->
+<div id="tab-exec" class="tab-content active">
+
+  <div class="exec-banner">
+    <h3>✅ Tổng quan tuần 11 (13–19/03/2026)</h3>
+    <p>POD Hạnh Trần đang có Q1 YTD GP2 <strong>5,798M / KPI 5,176M (+12.0%)</strong> — vượt kế hoạch mạnh. Tháng 1 bùng nổ 133% KPI (2,346M vs 1,770M). Tháng 2 hụt nhẹ 94% KPI (1,864M vs 1,980M). Tháng 3 (W11 partial) đang đạt 1,588M / KPI 1,426M = <strong>111%</strong>. PPC/GP2 Request 26.0% vượt Budget 21.2% (+4.8pp) — cần kiểm soát COE cost Q2.</p>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card green">
+      <div class="label">Q1 GP2 Actual (YTD)</div>
+      <div class="value" style="color:#10b981">5,798M</div>
+      <div class="sub">vs KPI: 5,175M</div>
+      <div class="pct pos">▲ +12.0% vs KPI</div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:100%"></div></div>
+    </div>
+    <div class="kpi-card green">
+      <div class="label">GP2 Achievement Q1</div>
+      <div class="value" style="color:#10b981">112.0%</div>
+      <div class="sub">Actual 5,798M / Budget 5,175M</div>
+      <div class="pct pos">▲ +623M vs KPI</div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:100%"></div></div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="label">%PPC/GP2 Request Q1</div>
+      <div class="value" style="color:#f59e0b">26.0%</div>
+      <div class="sub">Budget: 21.2% · Gap: +4.8pp</div>
+      <div class="pct warn">⚠ Vượt budget 4.8pp</div>
+      <div class="progress-bar"><div class="progress-fill fill-orange" style="width:81%"></div></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">GP3 (Est.) Q1</div>
+      <div class="value" style="color:#0f3460">4,291M</div>
+      <div class="sub">GP2 – DPPC (est. 1,507M)</div>
+      <div class="pct" style="color:#0f3460">DPPC = 26% × 5,798M</div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:74%"></div></div>
+    </div>
+  </div>
+
+  <!-- Charts Q1 -->
+  <div class="grid-2">
+    <div class="card">
+      <h3>📈 GP2 Actual vs KPI — Q1 2026</h3>
+      <div class="chart-container"><canvas id="chartGP2KPI"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>🧮 PPC/GP2 Benchmark Q1</h3>
+      <div style="padding: 8px 0;">
+        <div class="ppc-bar-wrap">
+          <div class="ppc-row">
+            <div class="ppc-label">Request</div>
+            <div class="ppc-track" style="position:relative">
+              <div class="ppc-fill request" style="width:81.25%">26.0%</div>
+              <div class="ppc-benchmark" style="left:78.1%">
+                <div class="ppc-benchmark-label">Benchmark 25%</div>
+              </div>
+            </div>
+            <div class="ppc-val" style="color:#e94560;font-weight:800">26.0%</div>
+          </div>
+          <div class="ppc-row">
+            <div class="ppc-label">Budget</div>
+            <div class="ppc-track">
+              <div class="ppc-fill budget" style="width:66.25%">21.2%</div>
+            </div>
+            <div class="ppc-val" style="color:#10b981;font-weight:800">21.2%</div>
+          </div>
+        </div>
+        <div class="ppc-metric-grid">
+          <div class="ppc-metric">
+            <div class="val" style="color:#e94560">26.0%</div>
+            <div class="lbl">Request %</div>
+          </div>
+          <div class="ppc-metric">
+            <div class="val" style="color:#10b981">21.2%</div>
+            <div class="lbl">Budget %</div>
+          </div>
+          <div class="ppc-metric">
+            <div class="val" style="color:#f59e0b">+4.8pp</div>
+            <div class="lbl">Delta</div>
+          </div>
+        </div>
+        <p style="font-size:11px;color:#888;margin-top:10px;line-height:1.5;">⚠ PPC/GP2 Request vượt benchmark 25% là 1pp. Cần review COE allocation để tối ưu chi phí Q2.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monthly KPI cards với real data -->
+  <div class="grid-3">
+    <div class="card" style="border-top: 4px solid #10b981;">
+      <h3 style="color:#10b981">✅ Jan 2026 — Actual</h3>
+      <div class="pnl-row"><span class="pnl-label">GP2 Actual</span><span class="pnl-val pos" style="font-size:18px;font-weight:800">2,346M</span></div>
+      <div class="pnl-row"><span class="pnl-label">GP2 KPI</span><span class="pnl-val">1,770M</span></div>
+      <div class="pnl-row"><span class="pnl-label">Attainment</span><span class="pnl-val pos" style="font-size:16px;font-weight:800">133%</span></div>
+      <div class="pnl-row"><span class="pnl-label">vs KPI</span><span class="pnl-val pos">+576M</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:100%"></div></div>
+    </div>
+    <div class="card" style="border-top: 4px solid #f59e0b;">
+      <h3 style="color:#f59e0b">⚠ Feb 2026 — Actual</h3>
+      <div class="pnl-row"><span class="pnl-label">GP2 Actual</span><span class="pnl-val warn" style="font-size:18px;font-weight:800">1,864M</span></div>
+      <div class="pnl-row"><span class="pnl-label">GP2 KPI</span><span class="pnl-val">1,980M</span></div>
+      <div class="pnl-row"><span class="pnl-label">Attainment</span><span class="pnl-val warn" style="font-size:16px;font-weight:800">94%</span></div>
+      <div class="pnl-row"><span class="pnl-label">vs KPI</span><span class="pnl-val neg">-116M</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-orange" style="width:94%"></div></div>
+    </div>
+    <div class="card" style="border-top: 4px solid #0f3460;">
+      <h3 style="color:#0f3460">📍 Mar 2026 — YTD W11</h3>
+      <div class="pnl-row"><span class="pnl-label">GP2 YTD (20/03)</span><span class="pnl-val" style="font-size:18px;font-weight:800;color:#0f3460">1,588M</span></div>
+      <div class="pnl-row"><span class="pnl-label">GP2 KPI (full month)</span><span class="pnl-val">1,426M</span></div>
+      <div class="pnl-row"><span class="pnl-label">Attainment partial</span><span class="pnl-val pos" style="font-size:16px;font-weight:800">111%</span></div>
+      <div class="pnl-row"><span class="pnl-label">Q1 YTD Total</span><span class="pnl-val pos">5,798M / 5,176M KPI</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:100%"></div></div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    <h4>📌 Lưu ÿ</h4>
+    Jan/Feb = Actual confirmed (locked). Mar = YTD as of 20/03 (W11), chưa kết thúc tháng.
+    Revenue, GP2 theo client, DPPC chi tiết: cần bổ sung thêm từ Finance team.
+  </div>
+</div>
+
+<!-- ==================== TAB 2: TEAM & PROJECTS ==================== -->
+<div id="tab-team" class="tab-content">
+  <h2 style="font-size:18px;font-weight:700;margin-bottom:20px;">👥 Team & Projects — Week 11</h2>
+
+  <!-- Client Portfolio -->
+  <div class="card">
+    <h3>🗂 Client Portfolio — POD Hạnh Trần (Q1 2026)</h3>
+    <div class="cb-header">
+      <span>Client</span><span>GP2 Q1 (est.)</span><span>Q1 Total</span><span>Share</span>
+    </div>
+    <div class="cb-wrapper" id="clientBars"></div>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;font-size:11px;">
+      <span><span class="ret-badge">2025</span> = Retained client</span>
+      <span><span class="new-badge">New</span> = New client 2026</span>
+      <span><span class="vip-badge">VIP</span> = VIP client</span>
+    </div>
+  </div>
+
+  <!-- Client table -->
+  <div class="card">
+    <h3>📋 Client Details</h3>
+    <table>
+      <tr><th>Client</th><th>Tier</th><th>Status</th><th>COE Type</th><th>Vertical</th><th>GP2 Q1</th><th>Health</th></tr>
+      <tr>
+        <td><strong>BCONS group</strong> <span class="vip-badge">VIP</span></td>
+        <td>Enterprise</td><td><span class="badge badge-green">Active</span></td>
+        <td>Branding + Influencers</td><td>Real estate</td>
+        <td><span class="tbd-chip">TBD</span></td>
+        <td><span class="badge badge-green">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Old Spice (AKYLN)</strong> <span class="ret-badge">2025</span></td>
+        <td>Enterprise</td><td><span class="badge badge-blue">Existing</span></td>
+        <td>Influencers</td><td>Beauty</td>
+        <td><span class="tbd-chip">TBD</span></td>
+        <td><span class="badge badge-green">Good</span></td>
+      </tr>
+      <tr>
+        <td><strong>Amazon (AMA)</strong> <span class="ret-badge">2025</span></td>
+        <td>Enterprise</td><td><span class="badge badge-blue">Existing</span></td>
+        <td>Influencers</td><td>Retail</td>
+        <td><span class="tbd-chip">TBD</span></td>
+        <td><span class="badge badge-yellow">Watch</span></td>
+      </tr>
+      <tr>
+        <td><strong>Liobank (BQCOL)</strong> <span class="ret-badge">2025</span></td>
+        <td>Enterprise</td><td><span class="badge badge-blue">Existing</span></td>
+        <td>–</td><td>Finance</td>
+        <td><span class="tbd-chip">TBD</span></td>
+        <td><span class="badge badge-yellow">Watch</span></td>
+      </tr>
+      <tr>
+        <td><strong>Motul VN</strong> <span class="ret-badge">2025</span></td>
+        <td>Enterprise</td><td><span class="badge badge-blue">Existing</span></td>
+        <td>Influencers</td><td>Auto</td>
+        <td><span class="tbd-chip">TBD</span></td>
+        <td><span class="badge badge-yellow">Watch</span></td>
+      </tr>
+      <tr>
+        <td><strong>RAIZEONE_Lipovitan</strong> <span class="ret-badge">2025</span></td>
+        <td>Enterprise</td><td><span class="badge badge-blue">Existing</span></td>
+        <td>–</td><td>FMCG</td>
+        <td><span class="tbd-chip">TBD</span></td>
+        <td><span class="badge badge-yellow">Watch</span></td>
+      </tr>
+      <tr>
+        <td><strong>Osobspa M150</strong> <span class="ret-badge">2025</span></td>
+        <td>Enterprise</td><td><span class="badge badge-blue">Existing</span></td>
+        <td>–</td><td>Beauty</td>
+        <td><span class="tbd-chip">TBD</span></td>
+        <td><span class="badge badge-gray">–</span></td>
+      </tr>
+      <tr>
+        <td><strong>Genex - Fatz Baby</strong> <span class="new-badge">New</span></td>
+        <td>Enterprise</td><td><span class="badge badge-blue">Existing</span></td>
+        <td>–</td><td>–</td>
+        <td><span class="tbd-chip">TBD</span></td>
+        <td><span class="badge badge-gray">–</span></td>
+      </tr>
+      <tr class="total-row">
+        <td><strong>TOTAL POD (Q1)</strong></td>
+        <td colspan="3"></td><td></td>
+        <td><strong>5,798M</strong></td>
+        <td><strong>112% vs KPI</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Issues Tracker -->
+  <div class="card">
+    <h3>🚨 Issues Tracker — Week 11</h3>
+    <table>
+      <tr><th>Project</th><th>PIC</th><th>Issue Type</th><th>Chi tiết</th></tr>
+      <tr>
+        <td colspan="4" style="text-align:center;color:#aaa;padding:20px;font-style:italic;">
+          📝 Chưa có issue được báo cáo tuần này — vui lòng cập nhật từ POD Director
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Pipeline Board -->
+  <div class="card">
+    <h3>🎯 Pitching Pipeline — Active Deals Q2</h3>
+    <div class="pipeline-board">
+      <div class="pipeline-col">
+        <div class="pipeline-header" style="background:#7c3aed;">PROPOSAL<span class="pipeline-count">?</span></div>
+        <div class="pipeline-items">
+          <div class="pipeline-item"><div class="pi-name">Cần bổ sung từ POD Director</div><div class="pi-pic">–</div></div>
+        </div>
+      </div>
+      <div class="pipeline-col">
+        <div class="pipeline-header" style="background:#2563eb;">QUOTATION<span class="pipeline-count">?</span></div>
+        <div class="pipeline-items">
+          <div class="pipeline-item"><div class="pi-name">Nucare Hi-High</div><div class="pi-pic">Châu Thanh Toàn · Apr–Jun</div></div>
+          <div class="pipeline-item"><div class="pi-name">Phillips Avent</div><div class="pi-pic">Châu Thanh Toàn · Apr–Jun</div></div>
+        </div>
+      </div>
+      <div class="pipeline-col">
+        <div class="pipeline-header" style="background:#059669;">EXECUTION<span class="pipeline-count">8</span></div>
+        <div class="pipeline-items">
+          <div class="pipeline-item"><div class="pi-name">BCONS group</div><div class="pi-pic">Phương Nga / Thanh Toàn</div></div>
+          <div class="pipeline-item"><div class="pi-name">Old Spice</div><div class="pi-pic">Châu Thanh Toàn</div></div>
+          <div class="pipeline-item"><div class="pi-name">Amazon</div><div class="pi-pic">–</div></div>
+          <div class="pipeline-item"><div class="pi-name">Liobank</div><div class="pi-pic">–</div></div>
+          <div class="pipeline-item"><div class="pi-name">Motul VN</div><div class="pi-pic">Châu Thanh Toàn</div></div>
+          <div class="pipeline-item"><div class="pi-name">RAIZEONE_Lipovitan</div><div class="pi-pic">–</div></div>
+          <div class="pipeline-item"><div class="pi-name">Osobspa M150</div><div class="pi-pic">–</div></div>
+          <div class="pipeline-item"><div class="pi-name">Genez - Fatz Baby</div><div class="pi-pic">–</div></div>
+        </div>
+      </div>
+      <div class="pipeline-col">
+        <div class="pipeline-header" style="background:#6b7280;">CLOSED<span class="pipeline-count">0</span></div>
+        <div class="pipeline-items">
+          <div class="pipeline-item" style="color:#aaa;font-style:italic;border:1px dashed #ddd;background:#fafafa;"><div class="pi-name">–</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TAB 3: P&L FINANCE ==================== -->
+<div id="tab-pnl" class="tab-content">
+  <h2 style="font-size:18px;font-weight:700;margin-bottom:20px;">💰 P&L Finance Analysis — Q1 2026</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card green">
+      <div class="label">GP2 Q1 Total</div>
+      <div class="value" style="color:#10b981">5,798M</div>
+      <div class="sub">vs KPI: 5,175M</div>
+      <div class="pct pos">+12.0% vs target</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="label">DPPC (est.)</div>
+      <div class="value" style="color:#f59e0b">1,507M</div>
+      <div class="sub">26.0% × GP2</div>
+      <div class="pct warn">Budget DPPC: 1,097M</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="label">GP3 (est.)</div>
+      <div class="value" style="color:#0f3460">4,291M</div>
+      <div class="sub">GP2 – DPPC</div>
+      <div class="pct" style="color:#0f3460">GP3 margin: TBD</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Clients Active</div>
+      <div class="value">8</div>
+      <div class="sub">All Enterprise</div>
+      <div class="pct" style="color:#888">7 Retained + 1 New</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>📊 GP2 vs KPI — Q1 Overview</h3>
+      <div class="chart-container"><canvas id="chartPnLMain"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>💸 PPC/GP2 Analysis</h3>
+      <div class="chart-container"><canvas id="chartPPCPie"></canvas></div>
+    </div>
+  </div>
+
+  <!-- P&L Statement -->
+  <div class="card">
+    <h3>📑 P&L Statement — Q1 2026 (Triệu VND)</h3>
+    <table>
+      <tr><th>Line Item</th><th>Q1 Actual</th><th>Q1 Budget</th><th>vs Budget</th><th>Note</th></tr>
+      <tr><td>Revenue Total</td><td><span class="tbd-chip">TBD</span></td><td><span class="tbd-chip">TBD</span></td><td>–</td><td>Cần bổ sung</td></tr>
+      <tr><td>GP1</td><td><span class="tbd-chip">TBD</span></td><td><span class="tbd-chip">TBD</span></td><td>–</td><td>–</td></tr>
+      <tr><td>Back Profit</td><td><span class="tbd-chip">TBD</span></td><td><span class="tbd-chip">TBD</span></td><td>–</td><td>–</td></tr>
+      <tr style="font-weight:700;background:#f0fdf4"><td>GP2</td><td style="color:#10b981;font-weight:800">5,798M</td><td>5,175M</td><td style="color:#10b981">+623M (+12.0%)</td><td>✅ Xác nhận từ sheet</td></tr>
+      <tr><td>GP2 Margin</td><td><span class="tbd-chip">TBD</span></td><td><span class="tbd-chip">TBD</span></td><td>–</td><td>Revenue chưa có</td></tr>
+      <tr><td>DPPC (PPC/GP2 × GP2)</td><td style="color:#f59e0b">1,507M (est.)</td><td>1,097M (est.)</td><td style="color:#ef4444">+410M</td><td>26% × 5,798</td></tr>
+      <tr><td>%PPC/GP2</td><td style="color:#f59e0b">26.0%</td><td>21.2%</td><td style="color:#ef4444">+4.8pp ⚠</td><td>Vượt benchmark 25%</td></tr>
+      <tr style="font-weight:700;background:#fafafa"><td>GP3 (est.)</td><td style="color:#0f3460">4,291M</td><td>4,078M (est.)</td><td style="color:#10b981">+213M</td><td>GP2 – DPPC</td></tr>
+    </table>
+    <div class="footnote" style="margin-top:12px;">
+      <h4>📌 TBD Items</h4>
+      Revenue, GP1, Back Profit chưa có data (bị hidden trong sheet, cần View-only access). DPPC và GP3 là ước tính từ %PPC/GP2.
+    </div>
+  </div>
+
+  <!-- Monthly P&L cards — data confirmed from Stagger chart -->
+  <div class="pnl-month-grid">
+    <div class="pnl-card" style="border-top: 3px solid #10b981;">
+      <h4 style="color:#065f46;">✅ Jan 2026 — Actual Confirmed</h4>
+      <div class="pnl-row"><span class="pnl-label">GP2 Actual</span><span class="pnl-val pos" style="font-weight:800">2,346M</span></div>
+      <div class="pnl-row"><span class="pnl-label">GP2 KPI</span><span class="pnl-val">1,770M</span></div>
+      <div class="pnl-row"><span class="pnl-label">Attainment</span><span class="pnl-val pos" style="font-weight:800">133%</span></div>
+      <div class="pnl-row"><span class="pnl-label">vs KPI</span><span class="pnl-val pos">+576M</span></div>
+      <div class="pnl-row"><span class="pnl-label">DPPC (est. 26%)</span><span class="pnl-val warn">610M</span></div>
+      <div class="pnl-row"><span class="pnl-label">GP3 (est.)</span><span class="pnl-val">1,736M</span></div>
+    </div>
+    <div class="pnl-card" style="border-top: 3px solid #f59e0b;">
+      <h4 style="color:#92400e;">⚠ Feb 2026 — Actual Confirmed</h4>
+      <div class="pnl-row"><span class="pnl-label">GP2 Actual</span><span class="pnl-val warn" style="font-weight:800">1,864M</span></div>
+      <div class="pnl-row"><span class="pnl-label">GP2 KPI</span><span class="pnl-val">1,980M</span></div>
+      <div class="pnl-row"><span class="pnl-label">Attainment</span><span class="pnl-val warn" style="font-weight:800">94%</span></div>
+      <div class="pnl-row"><span class="pnl-label">vs KPI</span><span class="pnl-val neg">-116M</span></div>
+      <div class="pnl-row"><span class="pnl-label">DPPC (est. 26%)</span><span class="pnl-val warn">485M</span></div>
+      <div class="pnl-row"><span class="pnl-label">GP3 (est.)</span><span class="pnl-val">1,379M</span></div>
+    </div>
+    <div class="pnl-card" style="border-top: 3px solid #0f3460;">
+      <h4 style="color:#0f3460;">📍 Mar 2026 — YTD W11 + Q1</h4>
+      <div class="pnl-row"><span class="pnl-label">GP2 YTD Mar (20/03)</span><span class="pnl-val" style="font-weight:800;color:#0f3460">1,588M</span></div>
+      <div class="pnl-row"><span class="pnl-label">Mar KPI (full month)</span><span class="pnl-val">1,426M</span></div>
+      <div class="pnl-row"><span class="pnl-label">Mar Attainment</span><span class="pnl-val pos">111% (partial)</span></div>
+      <div class="pnl-row" style="border-top:2px solid #e5e7eb;margin-top:6px;padding-top:8px"><span class="pnl-label"><strong>Q1 YTD Total</strong></span><span class="pnl-val pos" style="font-weight:800">5,798M</span></div>
+      <div class="pnl-row"><span class="pnl-label">Q1 KPI</span><span class="pnl-val">5,176M</span></div>
+      <div class="pnl-row"><span class="pnl-label">Q1 Attainment</span><span class="pnl-val pos" style="font-weight:800">112%</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TAB 4: RESOURCE HEATMAP ==================== -->
+<div id="tab-resource" class="tab-content">
+  <h2 style="font-size:18px;font-weight:700;margin-bottom:8px;">🔥 Resource Heatmap — COE Allocation Q1–Q2 2026</h2>
+  <p style="font-size:12px;color:#888;margin-bottom:20px;">Phân bổ FTE theo tháng cho các projects thuộc POD Hạnh Trần. Đơn vị: FTE (0.1 = 10% capacity)</p>
+
+  <div class="card">
+    <h3>📅 Monthly Allocation Heatmap</h3>
+    <table class="hm-table">
+      <thead>
+        <tr>
+          <th style="min-width:160px">Staff</th>
+          <th>Grade</th>
+          <th>COE</th>
+          <th>Project</th>
+          <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hm-name">Châu Thanh Toàn</td>
+          <td><span class="hm-grade" style="background:#e8def8;color:#5e35b1">E1</span></td>
+          <td>Influencers</td>
+          <td>Old Spice</td>
+          <td><span class="hm-cell hl">0.20</span></td>
+          <td><span class="hm-cell hh">0.40</span></td>
+          <td><span class="hm-cell hh">0.40</span></td>
+          <td><span class="hm-cell hl">0.20</span></td>
+          <td><span class="hm-cell hl">0.20</span></td>
+          <td><span class="hm-cell hl">0.20</span></td>
+        </tr>
+        <tr>
+          <td class="hm-name">Châu Thanh Toàn</td>
+          <td><span class="hm-grade" style="background:#e8def8;color:#5e35b1">E1</span></td>
+          <td>Influencers</td>
+          <td>BCONS group</td>
+          <td><span class="hm-cell hh">0.40</span></td>
+          <td><span class="hm-cell hl">0.20</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+        </tr>
+        <tr>
+          <td class="hm-name">Châu Thanh Toàn</td>
+          <td><span class="hm-grade" style="background:#e8def8;color:#5e35b1">E1</span></td>
+          <td>Influencers</td>
+          <td>Motul VN</td>
+          <td><span class="hm-cell hl">0.13</span></td>
+          <td><span class="hm-cell hl">0.10</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+        </tr>
+        <tr>
+          <td class="hm-name">Châu Thanh Toàn</td>
+          <td><span class="hm-grade" style="background:#e8def8;color:#5e35b1">E1</span></td>
+          <td>Influencers</td>
+          <td>Nucare Hi-High</td>
+          <td><span class="hm-cell hz">0</span></td>
+          <td><span class="hm-cell hz">0</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+          <td><span class="hm-cell hl">0.30</span></td>
+          <td><span class="hm-cell hl">0.30</span></td>
+          <td><span class="hm-cell hl">0.30</span></td>
+        </tr>
+        <tr>
+          <td class="hm-name">Châu Thanh Toàn</td>
+          <td><span class="hm-grade" style="background:#e8def8;color:#5e35b1">E1</span></td>
+          <td>Influencers</td>
+          <td>Phillips Avent</td>
+          <td><span class="hm-cell hz">0</span></td>
+          <td><span class="hm-cell hz">0</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+          <td><span class="hm-cell hl">0.30</span></td>
+          <td><span class="hm-cell hl">0.30</span></td>
+          <td><span class="hm-cell hl">0.30</span></td>
+        </tr>
+        <tr style="background:#fafafa">
+          <td colspan="10" style="padding:4px 8px;font-size:10px;color:#999;font-style:italic;">— Tổng Châu Thanh Toàn cho POD Hạnh Trần —</td>
+        </tr>
+        <tr>
+          <td class="hm-name">Đào Thị Phương Nga</td>
+          <td><span class="hm-grade" style="background:#fce4ec;color:#c62828">D3</span></td>
+          <td>Branding</td>
+          <td>BCONS group</td>
+          <td><span class="hm-cell hl">0.13</span></td>
+          <td><span class="hm-cell hl">0.05</span></td>
+          <td><span class="hm-cell hl">0.05</span></td>
+          <td><span class="hm-cell hl">0.05</span></td>
+          <td><span class="hm-cell hl">0.03</span></td>
+          <td><span class="hm-cell hi">–</span></td>
+        </tr>
+        <tr style="background:#fafafa">
+          <td colspan="4" style="padding:6px 8px;font-weight:700;font-size:11px;color:#888">Cần bổ sung AM team allocation</td>
+          <td colspan="6" style="text-align:center;font-size:11px;color:#aaa;font-style:italic;">POD Director + AMs chưa có data từ sheet</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-dot ho"></div>&gt;100% Overload</div>
+      <div class="legend-item"><div class="legend-dot hh"></div>85–100% Healthy</div>
+      <div class="legend-item"><div class="legend-dot ha"></div>70–85% Acceptable</div>
+      <div class="legend-item"><div class="legend-dot hl"></div>50–70% Low</div>
+      <div class="legend-item"><div class="legend-dot hi"></div>&lt;50% Low/Idle</div>
+      <div class="legend-item"><div class="legend-dot hz"></div>0% Unassigned</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>📊 COE Utilization by Project (Q1)</h3>
+      <div class="chart-container"><canvas id="chartCOEAlloc"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>👤 COE Request Summary — Q1</h3>
+      <table>
+        <tr><th>Staff</th><th>Grade</th><th>COE</th><th>Q1 FTE-M</th><th>Q2 Forecast</th></tr>
+        <tr>
+          <td>Châu Thanh Toàn</td><td>E1</td><td>Influencers</td>
+          <td>0.73</td><td>0.80 (est.)</td>
+        </tr>
+        <tr>
+          <td>Đào Thị Phương Nga</td><td>D3</td><td>Branding</td>
+          <td>0.23</td><td>0.08 (est.)</td>
+        </tr>
+        <tr style="background:#fafafa;color:#aaa;font-style:italic">
+          <td colspan="3">AM Team / POD Director</td><td>TBD</td><td>TBD</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3">Total COE (confirmed)</td>
+          <td>0.96 FTE-M</td><td>0.88 FTE-M</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TAB 5: DEEP-DIVE ==================== -->
+<div id="tab-filters" class="tab-content">
+  <h2 style="font-size:18px;font-weight:700;margin-bottom:8px;">🔍 Resource Deep-Dive</h2>
+  <p style="font-size:12px;color:#888;margin-bottom:20px;">Chọn chế độ phân tích: Timeline, Client/Project, hoặc Staff</p>
+
+  <div class="filter-mode">
+    <button class="fm-btn active" onclick="setMode('tl',this)">📅 Timeline</button>
+    <button class="fm-btn" onclick="setMode('cli',this)">🏢 Client/Project</button>
+    <button class="fm-btn" onclick="setMode('pic',this)">👤 Staff</button>
+  </div>
+
+  <div id="fm_tl" class="fm-panel active">
+    <div class="card">
+      <h3>Timeline Analysis — Q1–Q2 2026</h3>
+      <div class="chart-container"><canvas id="chartTimeline"></canvas></div>
+    </div>
+  </div>
+
+  <div id="fm_cli" class="fm-panel">
+    <div class="card">
+      <h3>Client/Project Breakdown</h3>
+      <table>
+        <tr><th>Client</th><th>COE Type</th><th>Staff</th><th>Jan FTE</th><th>Feb FTE</th><th>Mar FTE</th><th>Q1 Total</th></tr>
+        <tr><td>Old Spice</td><td>Influencers</td><td>Châu Thanh Toàn</td><td>0.20</td><td>0.40</td><td>0.40</td><td>1.00</td></tr>
+        <tr><td>BCONS group</td><td>Influencers</td><td>Châu Thanh Toàn</td><td>0.40</td><td>0.20</td><td>–</td><td>0.60</td></tr>
+        <tr><td>BCONS group</td><td>Branding</td><td>Đào Thị Phương Nga</td><td>0.13</td><td>0.05</td><td>0.05</td><td>0.23</td></tr>
+        <tr><td>Motul VN</td><td>Influencers</td><td>Châu Thanh Toàn</td><td>0.13</td><td>0.10</td><td>–</td><td>0.23</td></tr>
+        <tr><td>Nucare Hi-High</td><td>Influencers</td><td>Châu Thanh Toàn</td><td>–</td><td>–</td><td>–</td><td>Q2</td></tr>
+        <tr><td>Phillips Avent</td><td>Influencers</td><td>Châu Thanh Toàn</td><td>–</td><td>–</td><td>–</td><td>Q2</td></tr>
+        <tr><td>Amazon, Liobank, RAIZEONE...</td><td>–</td><td>TBD</td><td>–</td><td>–</td><td>–</td><td>TBD</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="fm_pic" class="fm-panel">
+    <div class="card">
+      <h3>Staff: Châu Thanh Toàn (E1 · Influencers)</h3>
+      <div class="chart-container-sm"><canvas id="chartPIC1"></canvas></div>
+      <p style="font-size:12px;color:#666;margin-top:10px;">Tổng FTE Q1: 0.73 · Q2 forecast: ~0.80 (Nucare + Phillips Avent)</p>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>Staff: Đào Thị Phương Nga (D3 · Branding)</h3>
+      <div class="chart-container-sm"><canvas id="chartPIC2"></canvas></div>
+      <p style="font-size:12px;color:#666;margin-top:10px;">Tổng FTE Q1: 0.23 · Giảm dần từ Q2</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TAB 6: RISK & ACTIONS ==================== -->
+<div id="tab-risk" class="tab-content">
+  <h2 style="font-size:18px;font-weight:700;margin-bottom:20px;">⚠️ Risk & Next Actions — Week 11</h2>
+
+  <!-- Risk Register -->
+  <div class="card">
+    <h3>🚦 Risk Register</h3>
+    <div class="risk-item risk-medium">
+      <div class="risk-title">1. PPC/GP2 vượt budget +4.8pp — Cần kiểm soát COE cost Q2</div>
+      <div class="risk-desc">
+        <strong>Impact:</strong> Request 26.0% vs Budget 21.2% — delta +4.8pp làm giảm GP3. Nếu không kiểm soát, DPPC tăng thêm ~248M so với kế hoạch.<br>
+        <strong>Root cause:</strong> COE Influencers (Châu Thanh Toàn) được allocate cao hơn budget dự kiến cho Q1. Client count tăng (Nucare, Phillips Avent pipeline Q2) cần thêm resource.<br>
+        <strong>Mitigation:</strong> Review COE booking plan Q2; cân nhắc freelancer cho peak months; negotiate scope với clients nếu margin thấp.
+      </div>
+    </div>
+    <div class="risk-item risk-medium">
+      <div class="risk-title">2. Q2 Pipeline Gap — Nucare & Phillips Avent chưa confirmed</div>
+      <div class="risk-desc">
+        <strong>Impact:</strong> 2 client mới (Nucare Hi-High, Phillips Avent) được pre-allocate COE từ Apr–Jun nhưng contract chưa confirmed.<br>
+        <strong>Root cause:</strong> Pipeline trong giai đoạn quotation, chưa có commit chính thức.<br>
+        <strong>Mitigation:</strong> Follow up quotation trong tuần 12. Nếu không close được, cần re-deploy Châu Thanh Toàn sang clients khác.
+      </div>
+    </div>
+    <div class="risk-item risk-low">
+      <div class="risk-title">3. Client data phân tán — GP2 theo client chưa visible</div>
+      <div class="risk-desc">
+        <strong>Impact:</strong> Chưa xác định được client nào contribute GP2 nhiều nhất trong Q1 do data ở hidden columns. Khó prioritize portfolio risk.<br>
+        <strong>Mitigation:</strong> Request View-only access cho sheet từ Finance team. Hoặc POD Director tự export monthly data.
+      </div>
+    </div>
+    <div class="risk-item risk-low">
+      <div class="risk-title">4. Amazon — Passive status, cần upsell Q2</div>
+      <div class="risk-desc">
+        <strong>Impact:</strong> Amazon được tag là PASSIVE (không chủ động upsell) và Retail vertical — risk churn nếu không nurture.<br>
+        <strong>Mitigation:</strong> POD Director identify upsell opportunity Q2. Book meeting với Amazon team trong tháng 4.
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Plan -->
+  <div class="card">
+    <h3>🎯 Action Plan — Tuần 12–14 (20/03 – 09/04/2026)</h3>
+    <div class="ap-grid">
+      <div class="ap-item" style="border-left-color:#0f3460">
+        <div class="ap-icon">📊</div>
+        <div class="ap-title">Unlock monthly P&L data</div>
+        <div class="ap-desc">Request View-only access cho Report tab trong Business Plan 2026 sheet. Target: có Jan/Feb breakdown trong tuần 12.</div>
+      </div>
+      <div class="ap-item" style="border-left-color:#f59e0b">
+        <div class="ap-icon">💰</div>
+        <div class="ap-title">Tối ưu PPC/GP2 Q2</div>
+        <div class="ap-desc">Review COE booking plan cho Q2. Xem xét freelancer cho Influencer peak. Target: PPC/GP2 về ≤ 24% trong Q2.</div>
+      </div>
+      <div class="ap-item" style="border-left-color:#10b981">
+        <div class="ap-icon">🤝</div>
+        <div class="ap-title">Close Nucare & Phillips Avent</div>
+        <div class="ap-desc">Follow up quotation đang gửi. Confirm contract trước 31/03 để lock COE allocation từ Apr.</div>
+      </div>
+      <div class="ap-item" style="border-left-color:#7c3aed">
+        <div class="ap-icon">🚀</div>
+        <div class="ap-title">Q2 Pipeline Build</div>
+        <div class="ap-desc">Identify 2–3 upsell opportunities từ existing clients (Amazon, Liobank). Pitch thêm service mới cho BCONS Q2.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next week priorities -->
+  <div class="card">
+    <h3>📋 Priorities — Tuần 12 (20–26/03/2026)</h3>
+    <table>
+      <tr><th>#</th><th>Action</th><th>Owner</th><th>Deadline</th><th>Status</th></tr>
+      <tr><td>1</td><td>Follow up Nucare Hi-High quotation</td><td>Hạnh Trần</td><td>21/03</td><td><span class="badge badge-yellow">In Progress</span></td></tr>
+      <tr><td>2</td><td>Follow up Phillips Avent contract</td><td>Châu Thanh Toàn</td><td>21/03</td><td><span class="badge badge-yellow">In Progress</span></td></tr>
+      <tr><td>3</td><td>Export monthly GP2 data Jan/Feb</td><td>Hạnh Trần</td><td>22/03</td><td><span class="badge badge-gray">Not Started</span></td></tr>
+      <tr><td>4</td><td>Review COE booking plan Q2</td><td>Hạnh Trần + Thanh Toàn</td><td>25/03</td><td><span class="badge badge-gray">Not Started</span></td></tr>
+      <tr><td>5</td><td>Amazon upsell call</td><td>Hạnh Trần</td><td>26/03</td><td><span class="badge badge-gray">Not Started</span></td></tr>
+      <tr><td>6</td><td>Cập nhật issues tracker tuần 12</td><td>AMs</td><td>26/03</td><td><span class="badge badge-gray">Not Started</span></td></tr>
+    </table>
+  </div>
+
+  <div class="footnote">
+    <h4>📌 Lưu ý</h4>
+    Dashboard này được build từ data Q1 SupplyxDemand Summary + Summary tab + Check Project tab trong Business Plan 2026 sheet.
+    Các mục TBD (monthly breakdown, Revenue, client GP2) cần View-only access để unlock hidden columns trong Report tab.
+    Issues tracker và pipeline cần POD Director cập nhật hàng tuần.
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+// Tab switching
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  btn.classList.add('active');
+  initCharts();
+}
+
+function setMode(mode, btn) {
+  document.querySelectorAll('.fm-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.fm-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('fm_' + mode).classList.add('active');
+}
+
+// GP2 vs KPI Chart
+let chartsInitialized = false;
+function initCharts() {
+  if (chartsInitialized) return;
+  chartsInitialized = true;
+
+  // Chart 1: GP2 Actual vs KPI — monthly + Q1
+  const ctx1 = document.getElementById('chartGP2KPI');
+  if (ctx1) {
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['Jan 26', 'Feb 26', 'Mar 26 (W11)', 'Q1 YTD'],
+        datasets: [
+          {
+            label: 'GP2 Actual/YTD',
+            data: [2346, 1864, 1588, 5798],
+            backgroundColor: ['rgba(16,185,129,0.85)', 'rgba(245,158,11,0.85)', 'rgba(15,52,96,0.75)', 'rgba(16,185,129,0.9)'],
+            borderColor: ['#10b981', '#f59e0b', '#0f3460', '#10b981'],
+            borderWidth: 2, borderRadius: 4,
+          },
+          {
+            label: 'GP2 KPI',
+            data: [1770, 1980, 1426, 5176],
+            backgroundColor: 'rgba(0,0,0,0)',
+            borderColor: '#e94560',
+            borderWidth: 2,
+            type: 'line',
+            pointBackgroundColor: '#e94560',
+            pointRadius: 5,
+            tension: 0.1,
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top' },
+          tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw.toLocaleString() + 'M' } }
+        },
+        scales: { y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() + 'M' } } }
+      }
+    });
+  }
+
+  // Chart 2: P&L Main (P&L tab)
+  const ctx2 = document.getElementById('chartPnLMain');
+  if (ctx2) {
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['GP2 Actual', 'GP2 Budget', 'DPPC (est.)', 'GP3 (est.)'],
+        datasets: [{
+          label: 'Triệu VND',
+          data: [5798, 5175, 1507, 4291],
+          backgroundColor: ['#10b981', '#6366f1', '#f59e0b', '#0f3460'],
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() + 'M' } } }
+      }
+    });
+  }
+
+  // Chart 3: PPC pie
+  const ctx3 = document.getElementById('chartPPCPie');
+  if (ctx3) {
+    new Chart(ctx3, {
+      type: 'doughnut',
+      data: {
+        labels: ['DPPC (26%)', 'GP3 Remaining (74%)'],
+        datasets: [{
+          data: [1507, 4291],
+          backgroundColor: ['#f59e0b', '#10b981'],
+          borderWidth: 3,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.raw.toLocaleString() + 'M (' + (ctx.raw/5798*100).toFixed(1) + '%)' } } }
+      }
+    });
+  }
+
+  // Chart 4: COE Allocation
+  const ctx4 = document.getElementById('chartCOEAlloc');
+  if (ctx4) {
+    new Chart(ctx4, {
+      type: 'bar',
+      data: {
+        labels: ['Old Spice', 'BCONS (Infl.)', 'BCONS (Brand.)', 'Motul'],
+        datasets: [
+          { label: 'Jan', data: [0.20, 0.40, 0.13, 0.13], backgroundColor: '#0f3460' },
+          { label: 'Feb', data: [0.40, 0.20, 0.05, 0.10], backgroundColor: '#1d4ed8' },
+          { label: 'Mar', data: [0.40, 0, 0.05, 0], backgroundColor: '#60a5fa' },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: { x: { stacked: true }, y: { stacked: true, max: 1.2 } }
+      }
+    });
+  }
+
+  // Timeline chart
+  const ctxTL = document.getElementById('chartTimeline');
+  if (ctxTL) {
+    new Chart(ctxTL, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [
+          { label: 'Châu Thanh Toàn (FTE total)', data: [0.73, 0.70, 0.40, 0.80, 0.80, 0.80], borderColor: '#7c3aed', fill: false, tension: 0.3 },
+          { label: 'Đào Thị Phương Nga (FTE total)', data: [0.13, 0.05, 0.05, 0.05, 0.03, 0], borderColor: '#f59e0b', fill: false, tension: 0.3 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { min: 0, max: 1.2 } }
+      }
+    });
+  }
+
+  // PIC1 chart
+  const cPIC1 = document.getElementById('chartPIC1');
+  if (cPIC1) {
+    new Chart(cPIC1, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [
+          { label: 'Old Spice', data: [0.20, 0.40, 0.40, 0.20, 0.20, 0.20], backgroundColor: '#0f3460' },
+          { label: 'BCONS', data: [0.40, 0.20, 0, 0, 0, 0], backgroundColor: '#10b981' },
+          { label: 'Motul', data: [0.13, 0.10, 0, 0, 0, 0], backgroundColor: '#f59e0b' },
+          { label: 'Nucare/Phillips', data: [0, 0, 0, 0.60, 0.60, 0.60], backgroundColor: '#7c3aed' },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: { x: { stacked: true }, y: { stacked: true, max: 1.2 } }
+      }
+    });
+  }
+
+  // PIC2 chart
+  const cPIC2 = document.getElementById('chartPIC2');
+  if (cPIC2) {
+    new Chart(cPIC2, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{ label: 'BCONS (Branding)', data: [0.13, 0.05, 0.05, 0.05, 0.03, 0], backgroundColor: '#f59e0b', borderRadius: 4 }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { max: 0.5 } }
+      }
+    });
+  }
+
+  // Render client bars
+  renderClientBars();
+}
+
+// Client bar chart (CSS)
+function renderClientBars() {
+  const container = document.getElementById('clientBars');
+  if (!container) return;
+  const clients = [
+    { name: 'BCONS group', badge: 'vip', q1: null, total: null, note: 'VIP · Real estate' },
+    { name: 'Old Spice', badge: 'ret', q1: null, total: null, note: 'Medium · Beauty' },
+    { name: 'Amazon', badge: 'ret', q1: null, total: null, note: 'Passive · Retail' },
+    { name: 'Liobank', badge: 'ret', q1: null, total: null, note: 'Finance' },
+    { name: 'Motul VN', badge: 'ret', q1: null, total: null, note: 'Auto' },
+    { name: 'RAIZEONE_Lipovitan', badge: 'ret', q1: null, total: null, note: 'FMCG' },
+    { name: 'Osobspa M150', badge: 'ret', q1: null, total: null, note: 'Beauty' },
+    { name: 'Genex - Fatz Baby', badge: 'new', q1: null, total: null, note: 'New 2026' },
+  ];
+  const badgeHtml = { vip: '<span class="vip-badge">VIP</span>', ret: '<span class="ret-badge">2025</span>', new: '<span class="new-badge">New</span>' };
+  container.innerHTML = clients.map(c => `
+    <div class="cb-row">
+      <div class="cb-name">${c.name} ${badgeHtml[c.badge]}</div>
+      <div><div class="cb-track" style="background:#f0f2f5">
+        <span style="font-size:11px;color:#bbb;padding:0 8px;align-self:center;font-style:italic;">TBD — cần bổ sung</span>
+      </div></div>
+      <div class="cb-total" style="color:#bbb">—</div>
+      <div class="cb-share" style="color:#bbb">—%</div>
+    </div>
+  `).join('');
+}
+
+// Initialize on load
+window.addEventListener('load', () => { initCharts(); });
+</script>
+
+</body>
+</html>
