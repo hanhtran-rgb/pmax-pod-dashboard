@@ -210,6 +210,10 @@ tr.total-row td { background: #1a1a2e; color: white; font-weight: 700; }
       <div class="value" style="color:#10b981">5,552M</div>
       <div class="sub">vs KPI: 5,175M</div>
       <div class="pct pos">▲ 107% (+377M)</div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px dashed #e5e7eb;">
+        <div style="font-size:11px;color:#888;">Last week (W10): <strong style="color:#1a1a2e;">5,410M</strong></div>
+        <div style="font-size:12px;font-weight:700;color:#10b981;margin-top:2px;">▲ +142M vs W10</div>
+      </div>
       <div class="progress-bar"><div class="progress-fill fill-green" style="width:100%"></div></div>
     </div>
     <div class="kpi-card green">
@@ -241,6 +245,10 @@ tr.total-row td { background: #1a1a2e; color: white; font-weight: 700; }
       <div class="value" style="color:#ef4444">4,281M</div>
       <div class="sub">vs KPI: 6,163M</div>
       <div class="pct neg">▼ 69% (−1,882M)</div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px dashed #e5e7eb;">
+        <div style="font-size:11px;color:#888;">Last week (W10): <strong style="color:#1a1a2e;">4,150M</strong></div>
+        <div style="font-size:12px;font-weight:700;color:#10b981;margin-top:2px;">▲ +131M vs W10</div>
+      </div>
       <div class="progress-bar"><div class="progress-fill fill-red" style="width:69%"></div></div>
     </div>
     <div class="kpi-card orange">
@@ -518,140 +526,180 @@ tr.total-row td { background: #1a1a2e; color: white; font-weight: 700; }
 
     <!-- EXECUTION — 10 clients -->
     <div style="font-size:11px;font-weight:700;color:#065f46;background:#d1fae5;padding:5px 10px;border-radius:6px;margin-bottom:10px;">EXECUTION — Đang chạy (10 clients)</div>
-    <table style="margin-bottom:16px;">
-      <tr><th>Client</th><th>Code</th><th style="text-align:right">GP T1</th><th style="text-align:right">GP T2</th><th style="text-align:right">GP T3</th><th style="text-align:right">GP T4</th><th style="text-align:right">GP T5</th><th style="text-align:right">GP T6</th><th style="text-align:right">Total</th></tr>
+    <div style="overflow-x:auto;">
+    <table style="margin-bottom:16px;min-width:900px;">
+      <tr><th>Client</th><th style="text-align:right">T1</th><th style="text-align:right">T2</th><th style="text-align:right">T3</th><th style="text-align:right">T4</th><th style="text-align:right">T5</th><th style="text-align:right">T6</th><th style="text-align:right;background:#e8f5e9;color:#065f46">GP Q1</th><th style="text-align:right;background:#fff8e1;color:#856404">GP Q2</th><th style="text-align:right;background:#e3f2fd;color:#1565c0">GP H1</th><th style="text-align:right;background:#f3e5f5;color:#7b1fa2">±W10</th></tr>
       <tr>
         <td><strong>Old Spice</strong></td>
-        <td style="font-size:11px;color:#888">CEAKYLN001</td>
         <td style="text-align:right"><strong>690</strong></td><td style="text-align:right"><strong>186</strong></td><td style="text-align:right"><strong>503</strong></td><td style="text-align:right"><strong>90</strong></td><td style="text-align:right"><strong>351</strong></td><td style="text-align:right"><strong>221</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">2,041</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">1,379</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">662</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">2,041</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+45</td>
       </tr>
       <tr>
         <td><strong>Motul</strong></td>
-        <td style="font-size:11px;color:#888">CELHEZL001</td>
         <td style="text-align:right"><strong>330</strong></td><td style="text-align:right"><strong>1,011</strong></td><td style="text-align:right"><strong>98</strong></td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td>
-        <td style="text-align:right"><strong style="color:#0f3460;">1,439</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">1,439</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">0</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">1,439</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+22</td>
       </tr>
       <tr>
         <td><strong>BCONS group</strong></td>
-        <td style="font-size:11px;color:#888">CEBVBTQ001</td>
         <td style="text-align:right"><strong>703</strong></td><td style="text-align:right"><strong>214</strong></td><td style="text-align:right"><strong>381</strong></td><td style="text-align:right"><strong>234</strong></td><td style="text-align:right"><strong>130</strong></td><td style="text-align:right;color:#ccc">—</td>
-        <td style="text-align:right"><strong style="color:#0f3460;">1,662</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">1,298</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">364</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">1,662</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+38</td>
       </tr>
       <tr>
         <td><strong>C.P. VIETNAM</strong></td>
-        <td style="font-size:11px;color:#888">CEYNVMW001</td>
         <td style="text-align:right"><strong>240</strong></td><td style="text-align:right"><strong>322</strong></td><td style="text-align:right"><strong>41</strong></td><td style="text-align:right"><strong>130</strong></td><td style="text-align:right"><strong>160</strong></td><td style="text-align:right"><strong>144</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">1,037</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">603</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">434</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">1,037</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+15</td>
       </tr>
       <tr>
         <td><strong>Amazon</strong></td>
-        <td style="font-size:11px;color:#888">CEAMA003</td>
         <td style="text-align:right"><strong>27</strong></td><td style="text-align:right"><strong>48</strong></td><td style="text-align:right"><strong>84</strong></td><td style="text-align:right"><strong>71</strong></td><td style="text-align:right"><strong>48</strong></td><td style="text-align:right"><strong>69</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">347</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">159</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">188</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">347</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+8</td>
       </tr>
       <tr>
         <td><strong>Genex - Fatz Baby</strong></td>
-        <td style="font-size:11px;color:#888">CEENYGL001</td>
         <td style="text-align:right"><strong>298</strong></td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td>
-        <td style="text-align:right"><strong style="color:#0f3460;">298</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">298</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">0</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">298</td>
+        <td style="text-align:right;font-weight:700;color:#888">0</td>
       </tr>
       <tr>
         <td><strong>Oishi VN</strong></td>
-        <td style="font-size:11px;color:#888">CETZPZD001</td>
         <td style="text-align:right"><strong>22</strong></td><td style="text-align:right"><strong>31</strong></td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right"><strong>24</strong></td><td style="text-align:right"><strong>24</strong></td><td style="text-align:right"><strong>24</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">125</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">53</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">72</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">125</td>
+        <td style="text-align:right;font-weight:700;color:#888">0</td>
       </tr>
       <tr>
         <td><strong>Liobank</strong></td>
-        <td style="font-size:11px;color:#888">CEBQCOL004</td>
         <td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>1</strong></td><td style="text-align:right"><strong>39</strong></td><td style="text-align:right"><strong>28</strong></td><td style="text-align:right"><strong>33</strong></td><td style="text-align:right"><strong>0</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">101</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">40</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">61</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">101</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+5</td>
       </tr>
       <tr>
         <td><strong>Muji Vietnam</strong></td>
-        <td style="font-size:11px;color:#888">—</td>
         <td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right"><strong>31</strong></td><td style="text-align:right"><strong>13</strong></td><td style="text-align:right"><strong>2</strong></td><td style="text-align:right"><strong>2</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">48</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">31</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">17</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">48</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+9</td>
       </tr>
       <tr>
         <td><strong>RAIZEONE_Lipovitan</strong></td>
-        <td style="font-size:11px;color:#888">CEYPFHT001</td>
         <td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>0</strong></td>
-        <td style="text-align:right"><span class="tbd-chip">0</span></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">0</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">0</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">0</td>
+        <td style="text-align:right;font-weight:700;color:#888">0</td>
       </tr>
       <tr class="total-row">
-        <td colspan="2"><strong>TOTAL EXECUTION (10 clients)</strong></td>
+        <td><strong>TOTAL EXECUTION (10 clients)</strong></td>
         <td style="text-align:right"><strong>2,310</strong></td><td style="text-align:right"><strong>1,813</strong></td><td style="text-align:right"><strong>1,177</strong></td><td style="text-align:right"><strong>590</strong></td><td style="text-align:right"><strong>748</strong></td><td style="text-align:right"><strong>460</strong></td>
+        <td style="text-align:right"><strong>5,300</strong></td>
+        <td style="text-align:right"><strong>1,798</strong></td>
         <td style="text-align:right"><strong>7,098</strong></td>
+        <td style="text-align:right"><strong>+142</strong></td>
       </tr>
     </table>
+    </div>
 
     <!-- PIPELINE — 6 clients -->
     <div style="font-size:11px;font-weight:700;color:#92400e;background:#fef3c7;padding:5px 10px;border-radius:6px;margin-bottom:10px;">PIPELINE — Đang negotiate / confirm (6 clients)</div>
-    <table style="margin-bottom:16px;">
-      <tr><th>Client</th><th>Code</th><th>Status</th><th style="text-align:right">GP T1</th><th style="text-align:right">GP T2</th><th style="text-align:right">GP T3</th><th style="text-align:right">GP T4</th><th style="text-align:right">GP T5</th><th style="text-align:right">GP T6</th><th style="text-align:right">Total</th></tr>
+    <div style="overflow-x:auto;">
+    <table style="margin-bottom:16px;min-width:900px;">
+      <tr><th>Client</th><th>Status</th><th style="text-align:right">T1</th><th style="text-align:right">T2</th><th style="text-align:right">T3</th><th style="text-align:right">T4</th><th style="text-align:right">T5</th><th style="text-align:right">T6</th><th style="text-align:right;background:#e8f5e9;color:#065f46">GP Q1</th><th style="text-align:right;background:#fff8e1;color:#856404">GP Q2</th><th style="text-align:right;background:#e3f2fd;color:#1565c0">GP H1</th><th style="text-align:right;background:#f3e5f5;color:#7b1fa2">±W10</th></tr>
       <tr>
         <td><strong>Nucare Hi-High</strong></td>
-        <td style="font-size:11px;color:#888">CEIJYOZ001</td>
         <td><span class="badge badge-yellow">Verbal Confirm</span></td>
         <td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>125</strong></td><td style="text-align:right"><strong>446</strong></td><td style="text-align:right"><strong>446</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">1,017</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">0</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">1,017</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">1,017</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+50</td>
       </tr>
       <tr>
         <td><strong>Daesang Vietnam</strong></td>
-        <td style="font-size:11px;color:#888">—</td>
         <td><span class="badge badge-blue">Contracting</span></td>
         <td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right"><strong>7</strong></td><td style="text-align:right"><strong>186</strong></td><td style="text-align:right"><strong>27</strong></td><td style="text-align:right"><strong>27</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">247</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">7</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">240</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">247</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+27</td>
       </tr>
       <tr>
         <td><strong>Gambol Thailand</strong></td>
-        <td style="font-size:11px;color:#888">—</td>
         <td><span class="badge badge-blue">Contracting</span></td>
         <td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>59</strong></td><td style="text-align:right"><strong>72</strong></td><td style="text-align:right"><strong>72</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">203</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">0</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">203</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">203</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+18</td>
       </tr>
       <tr>
         <td><strong>SHB Bank</strong></td>
-        <td style="font-size:11px;color:#888">—</td>
         <td><span class="badge badge-yellow">Pipeline</span></td>
         <td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right"><strong>39</strong></td><td style="text-align:right"><strong>64</strong></td><td style="text-align:right"><strong>54</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">157</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">0</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">157</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">157</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+24</td>
       </tr>
       <tr>
         <td><strong>Nhà Estate</strong></td>
-        <td style="font-size:11px;color:#888">—</td>
         <td><span class="badge badge-yellow">Pipeline</span></td>
         <td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right"><strong>28</strong></td><td style="text-align:right"><strong>28</strong></td><td style="text-align:right"><strong>28</strong></td>
-        <td style="text-align:right"><strong style="color:#0f3460;">84</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">0</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">84</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">84</td>
+        <td style="text-align:right;font-weight:700;color:#10b981">+12</td>
       </tr>
       <tr>
         <td><strong>VNPay</strong></td>
-        <td style="font-size:11px;color:#888">CEXHQIV001</td>
         <td><span class="badge badge-blue">Contract/Deposit</span></td>
         <td style="text-align:right"><strong>0</strong></td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td><td style="text-align:right;color:#ccc">—</td>
-        <td style="text-align:right"><strong style="color:#0f3460;">0</strong></td>
+        <td style="text-align:right;background:#f0faf4;font-weight:800;color:#065f46">0</td>
+        <td style="text-align:right;background:#fffdf0;font-weight:800;color:#856404">0</td>
+        <td style="text-align:right;background:#f0f7ff;font-weight:800;color:#0f3460">0</td>
+        <td style="text-align:right;font-weight:700;color:#888">0</td>
       </tr>
       <tr class="total-row">
-        <td colspan="3"><strong>TOTAL PIPELINE (6 clients)</strong></td>
+        <td colspan="2"><strong>TOTAL PIPELINE (6 clients)</strong></td>
         <td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>0</strong></td><td style="text-align:right"><strong>7</strong></td><td style="text-align:right"><strong>437</strong></td><td style="text-align:right"><strong>637</strong></td><td style="text-align:right"><strong>627</strong></td>
+        <td style="text-align:right"><strong>7</strong></td>
+        <td style="text-align:right"><strong>1,701</strong></td>
         <td style="text-align:right"><strong>1,708</strong></td>
+        <td style="text-align:right"><strong>+131</strong></td>
       </tr>
     </table>
+    </div>
 
     <!-- CLOSED — 2 clients -->
     <div style="font-size:11px;font-weight:700;color:#6b7280;background:#f3f4f6;padding:5px 10px;border-radius:6px;margin-bottom:10px;">CLOSED — Lost/Drop (2 clients)</div>
     <table>
-      <tr><th>Client</th><th>Code</th><th>Status</th></tr>
+      <tr><th>Client</th><th>Status</th></tr>
       <tr>
         <td>VNPay</td>
-        <td style="font-size:11px;color:#888">CEXFGTY001</td>
         <td><span class="badge badge-red">Lost/Drop</span></td>
       </tr>
       <tr>
         <td>Fursys - Nội thất HQ</td>
-        <td style="font-size:11px;color:#888">—</td>
         <td><span class="badge badge-red">Closed</span></td>
       </tr>
     </table>
