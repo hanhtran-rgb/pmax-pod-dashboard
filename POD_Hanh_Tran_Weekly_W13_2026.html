@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POD Hạnh Trần — Weekly Dashboard W13 2026</title>
+<style>
+  :root {
+    --dark: #1a1a2e;
+    --accent: #0f3460;
+    --alert: #e94560;
+    --positive: #10b981;
+    --warning: #f59e0b;
+    --neutral: #64748b;
+    --surface: #16213e;
+    --card: #1e2a45;
+    --text: #e2e8f0;
+    --subtext: #94a3b8;
+    --border: #2d3f6b;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--dark); color: var(--text); font-size: 13px; line-height: 1.5; }
+
+  /* HEADER */
+  .header { background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 60%, #16213e 100%); padding: 20px 32px; border-bottom: 2px solid var(--alert); }
+  .header-top { display: flex; justify-content: space-between; align-items: center; max-width: 1440px; margin: 0 auto; }
+  .header h1 { font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.5px; }
+  .header h1 span { color: var(--alert); }
+  .header-meta { text-align: right; font-size: 12px; color: var(--subtext); }
+  .header-meta strong { color: var(--text); font-size: 14px; display: block; }
+  .week-badge { display: inline-block; background: var(--alert); color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; margin-top: 4px; }
+
+  /* TABS */
+  .tabs { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .tabs-inner { max-width: 1440px; margin: 0 auto; display: flex; padding: 0 32px; }
+  .tab-btn { padding: 12px 22px; border: none; background: none; color: var(--subtext); cursor: pointer; font-size: 13px; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--alert); border-bottom-color: var(--alert); font-weight: 700; }
+
+  /* MAIN */
+  .main { max-width: 1440px; margin: 0 auto; padding: 24px 32px; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ANALYSIS BOX */
+  .analysis-box { background: linear-gradient(135deg, var(--accent) 0%, #1a2a4a 100%); border: 1px solid #2d4a7a; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+  .analysis-box h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--alert); margin-bottom: 12px; }
+  .analysis-box p { font-size: 13px; color: var(--text); line-height: 1.7; }
+  .analysis-box ul { list-style: none; padding: 0; }
+  .analysis-box ul li { padding: 4px 0; color: var(--text); font-size: 13px; }
+  .analysis-box ul li::before { content: "▸ "; color: var(--alert); }
+
+  /* KPI SECTION */
+  .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--subtext); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+  .kpi-card { background: var(--card); border-radius: 10px; padding: 16px 18px; border: 1px solid var(--border); position: relative; overflow: hidden; }
+  .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .kpi-card.green::before { background: var(--positive); }
+  .kpi-card.orange::before { background: var(--warning); }
+  .kpi-card.red::before { background: var(--alert); }
+  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--subtext); margin-bottom: 8px; }
+  .kpi-value { font-size: 26px; font-weight: 700; color: var(--white); line-height: 1; }
+  .kpi-value span.unit { font-size: 14px; font-weight: 400; color: var(--subtext); margin-left: 3px; }
+  .kpi-sub { margin-top: 8px; font-size: 11px; color: var(--subtext); }
+  .kpi-pct { font-size: 18px; font-weight: 700; margin-top: 4px; }
+  .kpi-pct.green { color: var(--positive); }
+  .kpi-pct.orange { color: var(--warning); }
+  .kpi-pct.red { color: var(--alert); }
+  .kpi-delta { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 6px; }
+  .kpi-delta.up { background: rgba(16,185,129,0.15); color: var(--positive); }
+  .kpi-delta.down { background: rgba(233,69,96,0.15); color: var(--alert); }
+  .kpi-target { font-size: 11px; color: var(--subtext); margin-top: 4px; }
+
+  /* TWO-COLUMN KPI */
+  .kpi-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .kpi-quarter { background: var(--card); border-radius: 10px; padding: 18px 20px; border: 1px solid var(--border); }
+  .kpi-quarter h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--subtext); margin-bottom: 14px; }
+  .kpi-mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .kpi-mini { background: #0d1b35; border-radius: 8px; padding: 12px; }
+  .kpi-mini-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--subtext); margin-bottom: 4px; }
+  .kpi-mini-value { font-size: 20px; font-weight: 700; color: var(--white); }
+  .kpi-mini-value .unit { font-size: 11px; color: var(--subtext); }
+  .kpi-mini-attain { font-size: 13px; font-weight: 700; margin-top: 3px; }
+  .kpi-mini-delta { font-size: 11px; color: var(--subtext); margin-top: 2px; }
+
+  /* BAR CHART */
+  .chart-section { margin-bottom: 24px; }
+  .bar-chart { background: var(--card); border-radius: 10px; padding: 20px; border: 1px solid var(--border); }
+  .bar-chart h4 { font-size: 12px; color: var(--subtext); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .bar-row { display: flex; align-items: center; margin-bottom: 14px; gap: 10px; }
+  .bar-label { width: 80px; font-size: 11px; color: var(--subtext); text-align: right; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 22px; background: #0d1b35; border-radius: 4px; position: relative; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding: 0 8px; font-size: 11px; font-weight: 600; color: white; white-space: nowrap; transition: width 0.5s; }
+  .bar-fill.gp2 { background: linear-gradient(90deg, var(--accent), #1e5fa0); }
+  .bar-fill.kpi { background: linear-gradient(90deg, #2a2a4a, #3a3a6a); position: absolute; top: 0; left: 0; }
+  .bar-kpi-marker { position: absolute; top: 0; height: 100%; border-left: 2px dashed var(--alert); }
+  .bar-value { width: 80px; font-size: 12px; font-weight: 600; color: var(--white); flex-shrink: 0; }
+  .bar-pct-badge { width: 60px; font-size: 11px; font-weight: 700; flex-shrink: 0; text-align: center; padding: 3px 0; border-radius: 8px; }
+
+  /* MONTHLY CARDS */
+  .monthly-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 24px; }
+  .month-card { background: var(--card); border-radius: 10px; padding: 14px; border: 1px solid var(--border); text-align: center; }
+  .month-card .month-name { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--subtext); margin-bottom: 8px; }
+  .month-card .month-val { font-size: 22px; font-weight: 700; color: var(--white); }
+  .month-card .month-unit { font-size: 11px; color: var(--subtext); }
+  .month-card .month-bar-bg { height: 4px; background: #0d1b35; border-radius: 2px; margin-top: 10px; }
+  .month-card .month-bar-fill { height: 4px; border-radius: 2px; }
+  .month-card .month-clients { margin-top: 8px; font-size: 11px; color: var(--subtext); }
+
+  /* RISK & ACTION */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .risk-card, .action-card { background: var(--card); border-radius: 10px; padding: 18px 20px; border: 1px solid var(--border); }
+  .risk-card { border-left: 4px solid var(--alert); }
+  .action-card { border-left: 4px solid var(--positive); }
+  .card-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; font-weight: 700; }
+  .risk-card .card-title { color: var(--alert); }
+  .action-card .card-title { color: var(--positive); }
+  .risk-item, .action-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 12px; color: var(--text); line-height: 1.5; }
+  .risk-item:last-child, .action-item:last-child { border-bottom: none; }
+  .risk-num { width: 20px; height: 20px; border-radius: 50%; background: rgba(233,69,96,0.2); color: var(--alert); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .action-num { width: 20px; height: 20px; border-radius: 50%; background: rgba(16,185,129,0.2); color: var(--positive); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+
+  /* TABLE */
+  .table-wrapper { background: var(--card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 20px; }
+  .table-header { padding: 14px 18px; background: var(--accent); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .table-header h4 { font-size: 12px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.8px; }
+  .table-badge { font-size: 11px; padding: 3px 10px; border-radius: 10px; background: rgba(255,255,255,0.1); color: var(--text); }
+  table { width: 100%; border-collapse: collapse; }
+  table thead th { background: #0d1b35; padding: 10px 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--subtext); text-align: center; border-bottom: 1px solid var(--border); }
+  table thead th:first-child { text-align: left; }
+  table tbody tr:hover { background: rgba(255,255,255,0.03); }
+  table tbody td { padding: 10px 12px; font-size: 12px; color: var(--text); border-bottom: 1px solid rgba(255,255,255,0.04); text-align: center; vertical-align: middle; }
+  table tbody td:first-child { text-align: left; font-weight: 500; color: var(--white); }
+  table tbody tr:last-child td { border-bottom: none; font-weight: 700; background: rgba(15,52,96,0.3); }
+  .val-positive { color: var(--positive); font-weight: 600; }
+  .val-alert { color: var(--alert); font-weight: 600; }
+  .val-warning { color: var(--warning); font-weight: 600; }
+  .status-badge { display: inline-block; padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .status-exec { background: rgba(16,185,129,0.15); color: var(--positive); }
+  .status-pipe { background: rgba(245,158,11,0.15); color: var(--warning); }
+  .status-verbal { background: rgba(15,52,96,0.4); color: #7eb8ff; }
+  .status-closed { background: rgba(233,69,96,0.15); color: var(--alert); }
+
+  /* HEATMAP */
+  .heatmap-table { width: 100%; border-collapse: collapse; }
+  .heatmap-table th { padding: 8px 10px; font-size: 11px; color: var(--subtext); font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; text-align: center; background: #0d1b35; border-bottom: 1px solid var(--border); }
+  .heatmap-table th:first-child { text-align: left; }
+  .heatmap-table td { padding: 8px 10px; font-size: 12px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .heatmap-table td:first-child { text-align: left; color: var(--white); font-weight: 500; }
+  .heat-cell { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; min-width: 40px; }
+  .heat-high { background: rgba(16,185,129,0.25); color: var(--positive); }
+  .heat-med { background: rgba(245,158,11,0.20); color: var(--warning); }
+  .heat-low { background: rgba(233,69,96,0.15); color: var(--alert); }
+  .heat-na { background: rgba(100,116,139,0.15); color: var(--neutral); }
+
+  /* COE TABLE */
+  .coe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+  .coe-card { background: var(--card); border-radius: 10px; padding: 16px; border: 1px solid var(--border); }
+  .coe-name { font-size: 12px; font-weight: 700; color: var(--white); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .coe-client-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .coe-client-row:last-child { border-bottom: none; }
+  .coe-client-name { color: var(--text); }
+  .coe-client-pct { color: var(--subtext); font-size: 11px; }
+  .coe-client-bar { height: 3px; background: #0d1b35; border-radius: 2px; margin-top: 4px; }
+  .coe-client-bar-fill { height: 3px; background: var(--accent); border-radius: 2px; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 20px; color: var(--neutral); font-size: 11px; border-top: 1px solid var(--border); margin-top: 32px; }
+  .footer a { color: var(--subtext); text-decoration: none; }
+
+  /* UTILITY */
+  .spacer { height: 16px; }
+  .text-center { text-align: center; }
+  .text-right { text-align: right; }
+  .highlight-row td { background: rgba(15,52,96,0.2) !important; }
+  .delta-up { color: var(--positive); font-size: 11px; }
+  .delta-down { color: var(--alert); font-size: 11px; }
+
+  @media print {
+    body { background: white; color: black; }
+    .tabs { display: none; }
+    .tab-content { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>POD <span>Hạnh Trần</span> — BrandCom</h1>
+      <div style="font-size:12px; color:var(--subtext); margin-top:4px;">PMAX Performance Dashboard · Cập nhật tự động</div>
+    </div>
+    <div class="header-meta">
+      <strong>Tuần W13 · 23/03 – 29/03/2026</strong>
+      <div><span class="week-badge">W13 / 2026</span></div>
+      <div style="margin-top:6px; font-size:11px;">Ngày cập nhật: 26/03/2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('exec')">📊 Executive Summary</button>
+    <button class="tab-btn" onclick="showTab('client')">🏢 Client Performance</button>
+    <button class="tab-btn" onclick="showTab('resource')">👥 Resource Heatmap</button>
+  </div>
+</div>
+
+<!-- ===== TAB 1: EXECUTIVE SUMMARY ===== -->
+<div id="tab-exec" class="tab-content active">
+<div class="main">
+
+  <!-- Analysis Box -->
+  <div class="analysis-box">
+    <h3>🔍 Executive Analysis — W13</h3>
+    <p>GP2 Q1 tăng mạnh +599M so với tuần trước lên <strong>6,093M</strong> (117.74% KPI) nhờ Bcons xác nhận budget phase 2 và tăng prob một số deal sắp chốt HĐ. Tuy nhiên, <strong>New Client Q1 gần như = 0M</strong> (487M/2,939M KPI — 16.6%) là risk lớn nhất — Gambol chưa onboard, 2 brief qualify đều bị drop. Q2 ở mức thấp 63.57% do thiếu brief và các pitch chưa có động thái sau 1 tuần. PPC/GP2 Q1 tăng lên 24.3% (vs KPI 20.3%) cần theo dõi chặt do Bcons tăng budget lead gen.</p>
+  </div>
+
+  <!-- Q1 KPI Overview -->
+  <div class="section-title">Q1 2026 — KPI Attainment (Forecast as of W13)</div>
+  <div class="kpi-grid">
+    <div class="kpi-card green">
+      <div class="kpi-label">GP2 Q1 Forecast</div>
+      <div class="kpi-value">6,093 <span class="unit">M</span></div>
+      <div class="kpi-pct green">117.74%</div>
+      <div class="kpi-target">KPI: 5,175M</div>
+      <div class="kpi-delta up">▲ +599M vs W12</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Existing GP2 Q1</div>
+      <div class="kpi-value">5,606 <span class="unit">M</span></div>
+      <div class="kpi-pct green">250.70%</div>
+      <div class="kpi-target">KPI: 2,236M</div>
+      <div class="kpi-delta up">▲ +772M vs W12</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">New Client GP2 Q1</div>
+      <div class="kpi-value">487 <span class="unit">M</span></div>
+      <div class="kpi-pct red">16.59%</div>
+      <div class="kpi-target">KPI: 2,939M</div>
+      <div class="kpi-delta down">▼ -173M vs W12</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-label">PPC/GP2 Q1</div>
+      <div class="kpi-value">24.3 <span class="unit">%</span></div>
+      <div class="kpi-pct orange">120% attain</div>
+      <div class="kpi-target">KPI: ≤20.3%</div>
+      <div class="kpi-delta down">▲ +2.87% vs W12 ⚠</div>
+    </div>
+  </div>
+
+  <!-- Q2 KPI Overview -->
+  <div class="section-title">Q2 2026 — KPI Attainment (Forecast as of W13)</div>
+  <div class="kpi-grid">
+    <div class="kpi-card red">
+      <div class="kpi-label">GP2 Q2 Forecast</div>
+      <div class="kpi-value">4,084 <span class="unit">M</span></div>
+      <div class="kpi-pct red">63.57%</div>
+      <div class="kpi-target">KPI: 6,163M</div>
+      <div class="kpi-delta up">▲ +166M vs W12</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">Existing GP2 Q2</div>
+      <div class="kpi-value">1,575 <span class="unit">M</span></div>
+      <div class="kpi-pct red">45.77%</div>
+      <div class="kpi-target">KPI: 3,082M</div>
+      <div class="kpi-delta up">▲ +165M vs W12</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-label">New Client GP2 Q2</div>
+      <div class="kpi-value">2,509 <span class="unit">M</span></div>
+      <div class="kpi-pct orange">81.37%</div>
+      <div class="kpi-target">KPI: 3,082M</div>
+      <div class="kpi-delta up">▲ +1M vs W12</div>
+    </div>
+    <div class="kpi-card" style="background:var(--card);">
+      <div class="kpi-label">H1 2026 Total GP2</div>
+      <div class="kpi-value">10,177 <span class="unit">M</span></div>
+      <div class="kpi-pct orange" style="font-size:14px;">88.5% of H1 KPI</div>
+      <div class="kpi-target">KPI H1: 11,338M</div>
+      <div class="kpi-delta up">▲ +765M vs W12</div>
+    </div>
+  </div>
+
+  <!-- GP2 vs KPI Bar Chart -->
+  <div class="chart-section">
+    <div class="bar-chart">
+      <h4>GP2 vs KPI — Q1 / Q2 / H1 Comparison (M VND)</h4>
+
+      <div class="bar-row">
+        <div class="bar-label">GP2 Q1</div>
+        <div class="bar-track">
+          <div class="bar-fill gp2" style="width:100%">6,093M</div>
+          <div class="bar-kpi-marker" style="left:84.9%"></div>
+        </div>
+        <div class="bar-value">6,093M</div>
+        <div class="bar-pct-badge" style="background:rgba(16,185,129,0.2);color:var(--positive);">117.7%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">KPI Q1</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:84.9%;background:linear-gradient(90deg,#2a2a6a,#3a4a8a)">5,175M</div>
+        </div>
+        <div class="bar-value" style="color:var(--subtext)">5,175M</div>
+        <div class="bar-pct-badge" style="background:rgba(100,116,139,0.2);color:var(--subtext);">Target</div>
+      </div>
+
+      <div style="height:12px;border-bottom:1px solid var(--border);margin-bottom:12px;"></div>
+
+      <div class="bar-row">
+        <div class="bar-label">GP2 Q2</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:66.3%;background:linear-gradient(90deg,#e94560,#c0392b)">4,084M</div>
+        </div>
+        <div class="bar-value">4,084M</div>
+        <div class="bar-pct-badge" style="background:rgba(233,69,96,0.2);color:var(--alert);">63.6%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">KPI Q2</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#2a2a6a,#3a4a8a)">6,163M</div>
+        </div>
+        <div class="bar-value" style="color:var(--subtext)">6,163M</div>
+        <div class="bar-pct-badge" style="background:rgba(100,116,139,0.2);color:var(--subtext);">Target</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monthly Detail -->
+  <div class="section-title">Monthly GP2 Breakdown (Actual / Forecast)</div>
+  <div class="monthly-grid">
+    <div class="month-card">
+      <div class="month-name">Tháng 1</div>
+      <div class="month-val">2,041 <span class="month-unit">M</span></div>
+      <div class="month-bar-bg"><div class="month-bar-fill" style="width:100%;background:var(--positive);"></div></div>
+      <div class="month-clients">Top: Old Spice 688 · Bcons 703</div>
+    </div>
+    <div class="month-card">
+      <div class="month-name">Tháng 2</div>
+      <div class="month-val">1,480 <span class="month-unit">M</span></div>
+      <div class="month-bar-bg"><div class="month-bar-fill" style="width:72%;background:var(--warning);"></div></div>
+      <div class="month-clients">Top: Motul 735 · CP 322</div>
+    </div>
+    <div class="month-card">
+      <div class="month-name">Tháng 3</div>
+      <div class="month-val">1,484 <span class="month-unit">M</span></div>
+      <div class="month-bar-bg"><div class="month-bar-fill" style="width:72%;background:var(--warning);"></div></div>
+      <div class="month-clients">Top: Bcons 405 · Old Spice 309</div>
+    </div>
+    <div class="month-card">
+      <div class="month-name">Tháng 4 <span style="font-size:10px;color:var(--alert)">fcst</span></div>
+      <div class="month-val">1,500 <span class="month-unit">M</span></div>
+      <div class="month-bar-bg"><div class="month-bar-fill" style="width:73%;background:var(--accent);"></div></div>
+      <div class="month-clients">Muji · Daesang · Gambol pipeline</div>
+    </div>
+    <div class="month-card">
+      <div class="month-name">Tháng 5 <span style="font-size:10px;color:var(--alert)">fcst</span></div>
+      <div class="month-val">1,350 <span class="month-unit">M</span></div>
+      <div class="month-bar-bg"><div class="month-bar-fill" style="width:66%;background:var(--alert);"></div></div>
+      <div class="month-clients">Risk: Motul, Bcons stop</div>
+    </div>
+    <div class="month-card">
+      <div class="month-name">Tháng 6 <span style="font-size:10px;color:var(--alert)">fcst</span></div>
+      <div class="month-val">1,234 <span class="month-unit">M</span></div>
+      <div class="month-bar-bg"><div class="month-bar-fill" style="width:60%;background:var(--alert);"></div></div>
+      <div class="month-clients">Cần brief mới Q2 gấp</div>
+    </div>
+  </div>
+
+  <!-- Risk & Actions -->
+  <div class="section-title">Risk Analysis & Action Plan</div>
+  <div class="two-col">
+    <div class="risk-card">
+      <div class="card-title">⚠ Top Risks — W13</div>
+      <div class="risk-item">
+        <div class="risk-num">1</div>
+        <div><strong>New Client Q1 ≈ 0:</strong> 487M/2,939M KPI (16.6%). Nucare & Jonga Daesang mark sai là new — điều chỉnh lại = New Q1 gần như không đạt. Gambol chưa onboard kịp Q1.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-num">2</div>
+        <div><strong>Q2 Brief Drought:</strong> 2 tuần liên tiếp không có Qualified Brief nào vào POD. Các pitch đang chạy chưa có any move sau 1 tuần. Q2 forecast 63.57% KPI.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-num">3</div>
+        <div><strong>Existing Q2 Risk:</strong> Motul & Bcons NewSky kết thúc cuối T5 → Existing GP2 Q2 sẽ giảm mạnh. Cần renew hoặc thay thế sớm.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-num">4</div>
+        <div><strong>PPC/GP2 tăng lên 24.3%:</strong> Vượt KPI 20.3% do Bcons tăng budget lead gen. Cần monitor chặt và tối ưu margin.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-num">5</div>
+        <div><strong>Thiếu POD Lead:</strong> Recruitment đang urgent — ảnh hưởng capacity POD H2 2026.</div>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="card-title">✅ Action Plan — Next Week</div>
+      <div class="action-item">
+        <div class="action-num">P1</div>
+        <div><strong>Push tuyển dụng POD Lead</strong> — Urgent. Confirm JD, pipeline candidates, interview schedule trong tuần tới.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">P2</div>
+        <div><strong>Push Contracting Verbal Confirms</strong> — Gambol, Daesang Jongga: cần ký HĐ trước EOQ1 (31/3). Tất cả verbal confirm đều cần push HĐ trong tuần này.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">P3</div>
+        <div><strong>GTM FMCG H1</strong> — Functions brief & Podcast production brief cần finalize trong tuần tới để generate Q2 pipeline.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">P4</div>
+        <div><strong>Product Package Brandcom</strong> — Full report analysis 2025 data. COE đang map data → cần complete để pitch new Q2 briefs.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">P5</div>
+        <div><strong>Bcons Q2 Budget Alignment</strong> — Confirm budget plan Q2 với Bcons để forecast chính xác hơn và tìm cách kéo dài hợp đồng sau T5.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Highlights -->
+  <div class="section-title">Top Highlights W13</div>
+  <div class="analysis-box" style="background:linear-gradient(135deg,#1a2e1a,#1a2a1a);">
+    <h3 style="color:var(--positive)">📌 Key Updates This Week</h3>
+    <ul>
+      <li><strong>POD Health Assessment:</strong> Align cách thức triển khai để đạt hiệu quả, tiết kiệm thời gian — quan trọng nhất tuần này.</li>
+      <li><strong>Fatzbaby:</strong> Present report campaign với CEO — suggest workshop để build marketing plan 2026 chung. KH đang open mind hơn về business model.</li>
+      <li><strong>Bcons:</strong> Align budget và plan cho Q2 — phase 4 & 5 đang paperwork, media chạy lại LDN/Radio/Spotify.</li>
+      <li><strong>COE Brandcomm:</strong> Đang map toàn bộ data Branding 2025 với SKU product → đưa ra phân tích &amp; nhận định cho 2026 + kết hợp pricing.</li>
+      <li><strong>AI Application:</strong> Team bắt đầu hiểu và apply AI vào công việc — tất cả leads đang track AI productivity.</li>
+    </ul>
+  </div>
+
+</div><!-- end .main -->
+</div><!-- end tab-exec -->
+
+
+<!-- ===== TAB 2: CLIENT PERFORMANCE ===== -->
+<div id="tab-client" class="tab-content">
+<div class="main">
+
+  <div class="analysis-box">
+    <h3>🏢 Client Portfolio Analysis — W13</h3>
+    <p>POD đang có <strong>9 Execution clients</strong> (GP2 đang chạy), <strong>4 Pipeline clients</strong> (Verbal/Contracting), và <strong>2 Closed/Dropped</strong>. Bcons group và Motul chiếm ~40% total GP2. Old Spice T1 đóng góp lớn 688M nhưng đang handover. Muji là deal mới nhất vừa kickoff W12 — đang track run-rate. Cross-POD Uniqlo/FE cũng đang handover trong tuần này.</p>
+  </div>
+
+  <!-- EXECUTION TABLE -->
+  <div class="table-wrapper">
+    <div class="table-header">
+      <h4>🟢 EXECUTION — Active Clients</h4>
+      <span class="table-badge">9 clients</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:180px">Client</th>
+          <th>PIC</th>
+          <th>T1 (M)</th>
+          <th>T2 (M)</th>
+          <th>T3 (M)</th>
+          <th>GP Q1 (M)</th>
+          <th>GP Q2 fcst (M)</th>
+          <th>GP H1 (M)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bcons Group</td>
+          <td>Nhung, Như, Ngân</td>
+          <td>703</td>
+          <td>77</td>
+          <td>405</td>
+          <td class="val-positive">1,185</td>
+          <td>450</td>
+          <td class="val-positive">1,635</td>
+          <td><span class="status-badge status-exec">Execution</span></td>
+        </tr>
+        <tr>
+          <td>Motul VN</td>
+          <td>Khánh, Vy</td>
+          <td>360</td>
+          <td>735</td>
+          <td>155</td>
+          <td class="val-positive">1,249</td>
+          <td>200</td>
+          <td class="val-positive">1,449</td>
+          <td><span class="status-badge status-exec">Execution</span></td>
+        </tr>
+        <tr>
+          <td>Old Spice</td>
+          <td>Như</td>
+          <td>688</td>
+          <td>249</td>
+          <td>309</td>
+          <td class="val-positive">1,245</td>
+          <td>0</td>
+          <td class="val-positive">1,245</td>
+          <td><span class="status-badge status-pipe">Handover W13</span></td>
+        </tr>
+        <tr>
+          <td>C.P. VIETNAM</td>
+          <td>Như, Ngân</td>
+          <td>240</td>
+          <td>322</td>
+          <td>88</td>
+          <td class="val-positive">650</td>
+          <td>350</td>
+          <td class="val-positive">1,000</td>
+          <td><span class="status-badge status-exec">Execution</span></td>
+        </tr>
+        <tr>
+          <td>Nucare Hi-High</td>
+          <td>—</td>
+          <td>0</td>
+          <td>0</td>
+          <td>327</td>
+          <td class="val-warning">327</td>
+          <td>400</td>
+          <td class="val-positive">727</td>
+          <td><span class="status-badge status-exec">New Onboard</span></td>
+        </tr>
+        <tr>
+          <td>Amazon Global Selling</td>
+          <td>—</td>
+          <td>27</td>
+          <td>48</td>
+          <td>77</td>
+          <td>152</td>
+          <td>180</td>
+          <td>332</td>
+          <td><span class="status-badge status-exec">Execution</span></td>
+        </tr>
+        <tr>
+          <td>Oishi VN</td>
+          <td>Vy</td>
+          <td>23</td>
+          <td>49</td>
+          <td>0</td>
+          <td class="val-warning">72</td>
+          <td>0</td>
+          <td class="val-warning">72</td>
+          <td><span class="status-badge status-pipe">Pending Brief</span></td>
+        </tr>
+        <tr>
+          <td>Muji VN (Linen)</td>
+          <td>Khánh</td>
+          <td>0</td>
+          <td>0</td>
+          <td>50</td>
+          <td class="val-warning">50</td>
+          <td>250</td>
+          <td class="val-positive">300</td>
+          <td><span class="status-badge status-exec">Execution</span></td>
+        </tr>
+        <tr>
+          <td>Lio Bank</td>
+          <td>Linh</td>
+          <td>0</td>
+          <td>1</td>
+          <td>94</td>
+          <td>95</td>
+          <td>350</td>
+          <td class="val-positive">445</td>
+          <td><span class="status-badge status-exec">New Onboard</span></td>
+        </tr>
+        <tr>
+          <td><strong>GRAND TOTAL</strong></td>
+          <td></td>
+          <td><strong>2,041</strong></td>
+          <td><strong>1,481</strong></td>
+          <td><strong>1,505</strong></td>
+          <td><strong class="val-positive">5,027</strong></td>
+          <td><strong>2,180</strong></td>
+          <td><strong class="val-positive">7,207</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PIPELINE TABLE -->
+  <div class="table-wrapper">
+    <div class="table-header">
+      <h4>🟡 PIPELINE — Verbal Confirm / Contracting</h4>
+      <span class="table-badge">4 clients</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:180px">Client</th>
+          <th>Status</th>
+          <th>Product</th>
+          <th>Q1 fcst (M)</th>
+          <th>Q2 fcst (M)</th>
+          <th>H1 fcst (M)</th>
+          <th>Next Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Gambol</td>
+          <td><span class="status-badge status-verbal">Verbal Confirm</span></td>
+          <td>IMC / Leadgen</td>
+          <td>200</td>
+          <td>400</td>
+          <td class="val-warning">600</td>
+          <td>Push HĐ trước 31/3</td>
+        </tr>
+        <tr>
+          <td>Daesang Jongga Kim Chi</td>
+          <td><span class="status-badge status-verbal">Verbal Confirm</span></td>
+          <td>IMC Branding</td>
+          <td>150</td>
+          <td>500</td>
+          <td class="val-warning">650</td>
+          <td>Push HĐ trước 31/3</td>
+        </tr>
+        <tr>
+          <td>Fatzbaby (Workshop)</td>
+          <td><span class="status-badge status-pipe">Proposing</span></td>
+          <td>Marketing Plan 2026</td>
+          <td>0</td>
+          <td>600</td>
+          <td class="val-warning">600</td>
+          <td>Propose workshop Q2</td>
+        </tr>
+        <tr>
+          <td>Fursys (SEM)</td>
+          <td><span class="status-badge status-closed">Dropped</span></td>
+          <td>SEM</td>
+          <td>30</td>
+          <td>0</td>
+          <td class="val-alert">30</td>
+          <td>KH quay xe — close</td>
+        </tr>
+        <tr>
+          <td><strong>PIPELINE TOTAL</strong></td>
+          <td></td>
+          <td></td>
+          <td><strong>380</strong></td>
+          <td><strong>1,500</strong></td>
+          <td><strong class="val-warning">1,880</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CROSS-POD TABLE -->
+  <div class="table-wrapper">
+    <div class="table-header">
+      <h4>🔵 CROSS-POD — Collaboration Clients</h4>
+      <span class="table-badge">Handover in progress</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:180px">Client</th>
+          <th>PIC</th>
+          <th>T1 (M)</th>
+          <th>T2 (M)</th>
+          <th>T3 (M)</th>
+          <th>GP Q1 (M)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Uniqlo VN</td>
+          <td>Linh</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="status-badge status-pipe">Handover W13</span></td>
+        </tr>
+        <tr>
+          <td>FE Credit App & Livestream</td>
+          <td>Linh</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="status-badge status-pipe">Handover W13</span></td>
+        </tr>
+        <tr>
+          <td>FE Credit Awareness</td>
+          <td>Như</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="status-badge status-pipe">Handover W13</span></td>
+        </tr>
+        <tr>
+          <td><strong>Note</strong></td>
+          <td colspan="6" style="text-align:left;color:var(--subtext);font-size:11px;">Cross-POD revenue counted in respective POD. Handover scheduled Thứ 4 24/3/2026.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div><!-- end tab-client -->
+
+
+<!-- ===== TAB 3: RESOURCE HEATMAP ===== -->
+<div id="tab-resource" class="tab-content">
+<div class="main">
+
+  <div class="analysis-box">
+    <h3>👥 Resource Analysis — W13</h3>
+    <p>POD hiện có <strong>4 core account</strong> (Nhung Lead, Nhi Lead + 2 support) và <strong>đang thiếu POD Lead</strong> — recruitment P1 cần resolve trong Q1. Nhung đang overload với Bcons (PL04/PL05 simultaneously + performance issues). Handover 3 Cross-POD clients trong W13 giảm tải cho Linh &amp; Như. Khánh và Vy support Motul &amp; Muji. Q2 cần thêm capacity khi Gambol/Daesang onboard.</p>
+  </div>
+
+  <!-- ACCOUNT TEAM HEATMAP -->
+  <div class="table-wrapper">
+    <div class="table-header">
+      <h4>📊 Account Team Utilization Heatmap</h4>
+      <span class="table-badge">Jan – Jun 2026</span>
+    </div>
+    <div style="padding: 16px;">
+      <table class="heatmap-table">
+        <thead>
+          <tr>
+            <th style="width:160px">Team Member</th>
+            <th>Role</th>
+            <th>T1</th>
+            <th>T2</th>
+            <th>T3 (now)</th>
+            <th>T4 fcst</th>
+            <th>T5 fcst</th>
+            <th>T6 fcst</th>
+            <th>Primary Clients</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Nhung Lê</td>
+            <td><span class="status-badge status-exec" style="font-size:10px;">Account Lead</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td style="font-size:11px;text-align:left">Bcons, AGS, CP Food (Chester)</td>
+          </tr>
+          <tr>
+            <td>Nhi Tiêu</td>
+            <td><span class="status-badge status-exec" style="font-size:10px;">Account Lead</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td style="font-size:11px;text-align:left">Motul, Oishi, Fatzbaby, Lio Bank</td>
+          </tr>
+          <tr>
+            <td>Như (Account)</td>
+            <td><span class="status-badge" style="background:rgba(15,52,96,0.4);color:#7eb8ff;font-size:10px;">Account</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-low">Low</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td style="font-size:11px;text-align:left">CP Food (Five Star/Mother's Day), AGS, FE (handover)</td>
+          </tr>
+          <tr>
+            <td>Ngân (Account)</td>
+            <td><span class="status-badge" style="background:rgba(15,52,96,0.4);color:#7eb8ff;font-size:10px;">Account</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td style="font-size:11px;text-align:left">CP Food (Chester, PR/Social), Bcons Performance</td>
+          </tr>
+          <tr>
+            <td>Khánh</td>
+            <td><span class="status-badge" style="background:rgba(15,52,96,0.4);color:#7eb8ff;font-size:10px;">Account</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-low">Low</span></td>
+            <td style="font-size:11px;text-align:left">Motul (AWO/activation), Muji (Linen)</td>
+          </tr>
+          <tr>
+            <td>Vy</td>
+            <td><span class="status-badge" style="background:rgba(15,52,96,0.4);color:#7eb8ff;font-size:10px;">Account</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td><span class="heat-cell heat-med">Med</span></td>
+            <td style="font-size:11px;text-align:left">Motul (content support), Oishi new proposal</td>
+          </tr>
+          <tr>
+            <td>Linh (Cross-POD)</td>
+            <td><span class="status-badge" style="background:rgba(100,116,139,0.3);color:var(--neutral);font-size:10px;">Cross-POD</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-high">High</span></td>
+            <td><span class="heat-cell heat-med">Med↓</span></td>
+            <td><span class="heat-cell heat-low">Low</span></td>
+            <td><span class="heat-cell heat-na">N/A</span></td>
+            <td><span class="heat-cell heat-na">N/A</span></td>
+            <td style="font-size:11px;text-align:left">Uniqlo, FE App (handover W13)</td>
+          </tr>
+          <tr>
+            <td style="color:var(--alert);font-weight:700;">[POD Lead — VACANT]</td>
+            <td><span class="status-badge status-closed" style="font-size:10px;">Urgent Hire</span></td>
+            <td><span class="heat-cell heat-na">—</span></td>
+            <td><span class="heat-cell heat-na">—</span></td>
+            <td><span class="heat-cell heat-na">—</span></td>
+            <td><span class="heat-cell heat-low">Planned</span></td>
+            <td><span class="heat-cell heat-med">Onboard?</span></td>
+            <td><span class="heat-cell heat-med">Active</span></td>
+            <td style="font-size:11px;text-align:left;color:var(--alert)">Cần recruit gấp — tác động Q2 capacity</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px; font-size:11px; color:var(--subtext);">
+        Legend: <span class="heat-cell heat-high" style="font-size:10px;">High (&gt;80%)</span> &nbsp; <span class="heat-cell heat-med" style="font-size:10px;">Med (50-80%)</span> &nbsp; <span class="heat-cell heat-low" style="font-size:10px;">Low (&lt;50%)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COE ALLOCATION -->
+  <div class="section-title">COE Allocation by Client — W13</div>
+  <div class="coe-grid">
+    <div class="coe-card">
+      <div class="coe-name">🎨 COE Creative / Production</div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">Bcons (Radio/Spotify/LDN)</span>
+        <span class="coe-client-pct">35%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:35%;background:var(--positive)"></div></div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">CP Food (Chester/MD)</span>
+        <span class="coe-client-pct">25%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:25%;background:var(--positive)"></div></div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">Motul (AWO assets)</span>
+        <span class="coe-client-pct">20%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:20%;background:var(--warning)"></div></div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">Muji + Other</span>
+        <span class="coe-client-pct">20%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:20%;background:var(--warning)"></div></div>
+    </div>
+    <div class="coe-card">
+      <div class="coe-name">📱 COE Media / Performance</div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">Bcons (Performance Ads)</span>
+        <span class="coe-client-pct">40%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:40%;background:var(--alert)"></div></div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">CP Food (Five Star Perf)</span>
+        <span class="coe-client-pct">20%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:20%;background:var(--warning)"></div></div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">Muji (FB/IG/TikTok)</span>
+        <span class="coe-client-pct">20%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:20%;background:var(--warning)"></div></div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">Lio Bank + Others</span>
+        <span class="coe-client-pct">20%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:20%;background:var(--warning)"></div></div>
+    </div>
+    <div class="coe-card">
+      <div class="coe-name">✍️ COE Content / PR</div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">Bcons PR (Ngân)</span>
+        <span class="coe-client-pct">30%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:30%;background:var(--positive)"></div></div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">Bcons Social (Ngân)</span>
+        <span class="coe-client-pct">25%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:25%;background:var(--positive)"></div></div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">COE Brandcomm Analysis</span>
+        <span class="coe-client-pct">25%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:25%;background:var(--accent)"></div></div>
+      <div class="coe-client-row">
+        <span class="coe-client-name">Other clients</span>
+        <span class="coe-client-pct">20%</span>
+      </div>
+      <div class="coe-client-bar"><div class="coe-client-bar-fill" style="width:20%;background:var(--warning)"></div></div>
+    </div>
+  </div>
+
+  <!-- Capacity Notes -->
+  <div class="analysis-box" style="background:rgba(233,69,96,0.08);border-color:rgba(233,69,96,0.3);">
+    <h3 style="color:var(--alert)">⚠ Capacity Alerts — Q2 Planning</h3>
+    <ul>
+      <li><strong>POD Lead VACANT:</strong> Mỗi tuần delay = 1 tuần ít capacity Q2. Cần onboard trước 30/4 để kịp ramp-up tháng 5.</li>
+      <li><strong>Nhung Overloaded T3:</strong> Đang handle Bcons PL04+PL05 cùng lúc + performance issue -30% GP2. Cần support hoặc reduce client load.</li>
+      <li><strong>Handover Cross-POD (Uniqlo/FE):</strong> Giải phóng Linh & Như ~20-30% capacity từ W13 → reallocate cho Gambol/Daesang onboarding.</li>
+      <li><strong>Q2 New Clients:</strong> Khi Gambol + Daesang + Fatzbaby Workshop onboard cùng lúc T4 = need at least 1 thêm account để absorb.</li>
+    </ul>
+  </div>
+
+</div>
+</div><!-- end tab-resource -->
+
+<!-- FOOTER -->
+<div class="footer">
+  POD Hạnh Trần — BrandCom · PMAX | W13 2026 (23/03–29/03) · Auto-generated 26/03/2026
+  <br>Data sources: POD Hạnh Sun 2026 Spreadsheet · Report 6.3 · GP Tracking · Existing Clients
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
